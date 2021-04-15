@@ -142,16 +142,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\02_getting_an_image_on_the_screen\111.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="11_clip_rendering_and_sprite_sheets\11_clip_rendering_and_sprite_sheets.cpp" />
     <ClCompile Include="Game_main.cpp" />
     <ClCompile Include="graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_main.h" />
     <ClInclude Include="graphics.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\SDL_nauka_temp\textures\T_grass_1.png" />
+    <Image Include="..\..\SDL_nauka_temp\textures\T_ground_1.png" />
+    <Image Include="..\..\SDL_nauka_temp\textures\T_trees_1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

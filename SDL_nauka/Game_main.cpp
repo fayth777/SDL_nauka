@@ -1,9 +1,9 @@
 
 #include "Game_main.h"
 #include "graphics.h"
-#include <stdio.h>
-#include <string>
-#include <SDL.h>
+#include "stdio.h"
+#include "string"
+#include "SDL.h"
 
 
 
@@ -13,7 +13,7 @@
 void close()
 {
 	//Free loaded images
-	gSpriteSheetTexture.free();
+	TileTexture.free();
 
 	//Destroy window	
 	SDL_DestroyRenderer(gRenderer);
@@ -29,16 +29,16 @@ void close()
 int main(int argc, char* args[])
 {
 	//Start up SDL and create window
-	if (!init(gWindow, gRenderer))
+	if (!init())
 	{
 		printf("Failed to initialize!\n");
 	}
 	else
 	{
-		//Load media
-		if (!loadMedia())
+		//Load tiles
+		if (!LoadTiles())
 		{
-			printf("Failed to load media!\n");
+			printf("Failed to load tile texture!\n");
 		}
 		else
 		{
@@ -46,16 +46,16 @@ int main(int argc, char* args[])
 			bool quit = false;
 
 			//Event handler
-			SDL_Event e;
+			SDL_Event event_handler;
 
 			//While application is running
 			while (!quit)
 			{
 				//Handle events on queue
-				while (SDL_PollEvent(&e) != 0)
+				while (SDL_PollEvent(&event_handler) != 0)
 				{
 					//User requests quit
-					if (e.type == SDL_QUIT)
+					if (event_handler.type == SDL_QUIT)
 					{
 						quit = true;
 					}
@@ -66,16 +66,16 @@ int main(int argc, char* args[])
 				SDL_RenderClear(gRenderer);
 
 				//Render top left sprite
-				gSpriteSheetTexture.render(0, 0, &gSpriteClips[0]);
+				TileTexture.render(0, 0 );
 
 				//Render top right sprite
-				gSpriteSheetTexture.render(SCREEN_WIDTH - gSpriteClips[1].w, 0, &gSpriteClips[1]);
+				TileTexture.render(16, 0 );
 
 				//Render bottom left sprite
-				gSpriteSheetTexture.render(0, SCREEN_HEIGHT - gSpriteClips[2].h, &gSpriteClips[2]);
+				TileTexture.render(32, 32 );
 
 				//Render bottom right sprite
-				gSpriteSheetTexture.render(SCREEN_WIDTH - gSpriteClips[3].w, SCREEN_HEIGHT - gSpriteClips[3].h, &gSpriteClips[3]);
+				TileTexture.render(128, 32);
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

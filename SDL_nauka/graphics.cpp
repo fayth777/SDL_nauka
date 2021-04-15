@@ -1,9 +1,9 @@
 #include "graphics.h"
+#include "Game_main.h"
 
 
 
-
-bool init(SDL_Window* gWindow, SDL_Renderer* gRenderer)
+bool init()
 {
 	//Initialization flag
 	bool success = true;
@@ -57,44 +57,18 @@ bool init(SDL_Window* gWindow, SDL_Renderer* gRenderer)
 	return success;
 }
 
-bool loadMedia()
+bool LoadTiles()
 {
 	//Loading success flag
 	bool success = true;
 
 	//Load sprite sheet texture
-	if (!gSpriteSheetTexture.loadFromFile("textures/T_grass_1.png"))
+	if (!TileTexture.LoadTextureFromFile("textures/T_grass_1.png"))
 	{
 		printf("Failed to load sprite sheet texture!\n");
 		success = false;
 	}
-	else
-	{
-		//Set top left sprite
-		gSpriteClips[0].x = 0;
-		gSpriteClips[0].y = 0;
-		gSpriteClips[0].w = 100;
-		gSpriteClips[0].h = 100;
-
-		//Set top right sprite
-		gSpriteClips[1].x = 100;
-		gSpriteClips[1].y = 0;
-		gSpriteClips[1].w = 100;
-		gSpriteClips[1].h = 100;
-
-		//Set bottom left sprite
-		gSpriteClips[2].x = 0;
-		gSpriteClips[2].y = 100;
-		gSpriteClips[2].w = 100;
-		gSpriteClips[2].h = 100;
-
-		//Set bottom right sprite
-		gSpriteClips[3].x = 100;
-		gSpriteClips[3].y = 100;
-		gSpriteClips[3].w = 100;
-		gSpriteClips[3].h = 100;
-	}
-
+	
 	return success;
 }
 LTexture::LTexture()
@@ -111,7 +85,7 @@ LTexture::~LTexture()
 	free();
 }
 
-bool LTexture::loadFromFile(std::string path)
+bool LTexture::LoadTextureFromFile(std::string path)
 {
 	//Get rid of preexisting texture
 	free();
@@ -127,8 +101,7 @@ bool LTexture::loadFromFile(std::string path)
 	}
 	else
 	{
-		//Color key image
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+	
 
 		//Create texture from surface pixels
 		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
@@ -147,7 +120,6 @@ bool LTexture::loadFromFile(std::string path)
 		SDL_FreeSurface(loadedSurface);
 	}
 
-	//Return success
 	mTexture = newTexture;
 	return mTexture != NULL;
 }

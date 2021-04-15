@@ -4,24 +4,6 @@
 #include <stdio.h>
 #include <string>
 
-
-
-	const int SCREEN_WIDTH = 1024;
-	const int SCREEN_HEIGHT = 768;
-
-	bool init(SDL_Window* gWindow, SDL_Renderer* gRenderer);
-
-	//Loads media
-	bool loadMedia();
-
-	//The window we'll be rendering to
-	SDL_Window* gWindow = NULL;
-
-	//The window renderer
-	SDL_Renderer* gRenderer = NULL;
-
-	LTexture gSpriteSheetTexture;
-
 class LTexture
 {
 public:
@@ -32,7 +14,7 @@ public:
 	~LTexture();
 
 	//Loads image at specified path
-	bool loadFromFile(std::string path);
+	bool LoadTextureFromFile(std::string path);
 
 	//Deallocates texture
 	void free();
@@ -52,3 +34,15 @@ private:
 	int mWidth;
 	int mHeight;
 };
+
+	const int SCREEN_WIDTH = 1024;
+	const int SCREEN_HEIGHT = 768;
+
+	bool init(); 
+
+	//Loads media
+	bool LoadTiles();
+
+	
+
+

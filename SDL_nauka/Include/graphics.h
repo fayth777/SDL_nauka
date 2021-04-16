@@ -43,7 +43,7 @@ private:
 	//Loads media
 	bool LoadTileTexture();
 	//Fill screen with tiles
-	void RenderTiles(LTexture* TileTexture);
+	void RenderTiles();
 	
 
 

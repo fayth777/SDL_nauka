@@ -70,7 +70,7 @@ int main(int argc, char* args[])
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-				RenderTiles(&TileTexture);
+				RenderTiles();
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

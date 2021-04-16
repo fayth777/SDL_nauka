@@ -1,6 +1,7 @@
 #pragma once
 #include "graphics.h"
 #include "Game_main.h"
+#include "Tile.h"
 
 
 
@@ -57,15 +58,25 @@ bool init()
 
 	return success;
 }
-void RenderTiles(LTexture* TileTexture)
+void RenderTiles()
 {
-	bool success = true;
 
 	for (size_t y = 0; y < SCREEN_HEIGHT / 32; y++)
 	{
 		for (size_t i = 0; i < SCREEN_WIDTH / 32; i++)
 		{
-			TileTexture->render(i * 32, y * 32);
+			/*TileType tiletype;
+			if (i<SCREEN_WIDTH/64)
+			{
+				tiletype = TileType::TILETYPE_GROUND;
+			}
+			else
+			{
+				tiletype = TileType::TILETYPE_GRASS;
+			}*/
+			Tile newtile(TileType::TILETYPE_GRASS, i * 32, y * 32);
+			newtile.set_texture(TileType::TILETYPE_GRASS);
+			newtile.TileTexture.render(i * 32, y * 32);
 		}
 	}
 	

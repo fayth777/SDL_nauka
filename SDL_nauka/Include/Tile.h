@@ -23,6 +23,6 @@ public:
 private:
 	
 	std::string TexturePath;
-	std::string GetTileTexturePath(enum TileType tiletype);
+	std::string GetTileTexturePath(enum class TileType tiletype);
 };
 

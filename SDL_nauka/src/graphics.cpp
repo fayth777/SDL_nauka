@@ -65,7 +65,7 @@ void RenderTiles()
 	{
 		for (size_t i = 0; i < SCREEN_WIDTH / 32; i++)
 		{
-			/*TileType tiletype;
+			TileType tiletype;
 			if (i<SCREEN_WIDTH/64)
 			{
 				tiletype = TileType::TILETYPE_GROUND;
@@ -73,9 +73,9 @@ void RenderTiles()
 			else
 			{
 				tiletype = TileType::TILETYPE_GRASS;
-			}*/
-			Tile newtile(TileType::TILETYPE_GRASS, i * 32, y * 32);
-			newtile.set_texture(TileType::TILETYPE_GRASS);
+			}
+			Tile newtile(tiletype, i * 32, y * 32);
+			newtile.set_texture(tiletype);
 			newtile.TileTexture.render(i * 32, y * 32);
 		}
 	}

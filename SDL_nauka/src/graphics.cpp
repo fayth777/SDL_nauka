@@ -1,3 +1,4 @@
+#pragma once
 #include "graphics.h"
 #include "Game_main.h"
 
@@ -56,12 +57,25 @@ bool init()
 
 	return success;
 }
+void RenderTiles(LTexture* TileTexture)
+{
+	bool success = true;
 
-bool LoadTiles()
+	for (size_t y = 0; y < SCREEN_HEIGHT / 32; y++)
+	{
+		for (size_t i = 0; i < SCREEN_WIDTH / 32; i++)
+		{
+			TileTexture->render(i * 32, y * 32);
+		}
+	}
+	
+	
+}
+bool LoadTileTexture()
 {
 	//Loading success flag
 	bool success = true;
-
+	
 	//Load sprite sheet texture
 	if (!TileTexture.LoadTextureFromFile("textures/T_grass_1.png"))
 	{

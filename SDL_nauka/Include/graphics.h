@@ -41,8 +41,9 @@ private:
 	bool init(); 
 
 	//Loads media
-	bool LoadTiles();
-
+	bool LoadTileTexture();
+	//Fill screen with tiles
+	void RenderTiles(LTexture* TileTexture);
 	
 
 

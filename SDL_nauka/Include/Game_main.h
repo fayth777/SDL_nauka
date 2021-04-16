@@ -3,10 +3,9 @@
 #include "graphics.h"
 
 //The window we'll be rendering to
-SDL_Window* gWindow = NULL;
+extern SDL_Window* gWindow;
 
 //The window renderer
-SDL_Renderer* gRenderer = NULL;
+extern SDL_Renderer* gRenderer;
 
-SDL_Rect gSpriteClips[4];
-LTexture TileTexture;
+extern LTexture TileTexture;

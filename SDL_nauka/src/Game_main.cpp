@@ -6,7 +6,12 @@
 #include "SDL.h"
 
 
+SDL_Window* gWindow = NULL;
 
+//The window renderer
+SDL_Renderer* gRenderer = NULL;
+
+LTexture TileTexture;
 
 
 
@@ -25,7 +30,7 @@ void close()
 	IMG_Quit();
 	SDL_Quit();
 }
-
+ 
 int main(int argc, char* args[])
 {
 	//Start up SDL and create window
@@ -36,7 +41,7 @@ int main(int argc, char* args[])
 	else
 	{
 		//Load tiles
-		if (!LoadTiles())
+		if (!LoadTileTexture())
 		{
 			printf("Failed to load tile texture!\n");
 		}
@@ -60,22 +65,12 @@ int main(int argc, char* args[])
 						quit = true;
 					}
 				}
-
+		
 				//Clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-				//Render top left sprite
-				TileTexture.render(0, 0 );
-
-				//Render top right sprite
-				TileTexture.render(16, 0 );
-
-				//Render bottom left sprite
-				TileTexture.render(32, 32 );
-
-				//Render bottom right sprite
-				TileTexture.render(128, 32);
+				RenderTiles(&TileTexture);
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

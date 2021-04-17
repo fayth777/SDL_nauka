@@ -5,7 +5,7 @@
 
 
 
-bool init()
+bool Init()
 {
 	//Initialization flag
 	bool success = true;
@@ -25,7 +25,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, kSCREEN_WIDTH, kSCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -61,12 +61,12 @@ bool init()
 void RenderTiles()
 {
 
-	for (size_t y = 0; y < SCREEN_HEIGHT / 32; y++)
+	for (size_t y = 0; y < kSCREEN_HEIGHT / 32; y++)
 	{
-		for (size_t i = 0; i < SCREEN_WIDTH / 32; i++)
+		for (size_t i = 0; i < kSCREEN_WIDTH / 32; i++)
 		{
 			TileType tiletype;
-			if (i<SCREEN_WIDTH/64)
+			if (i<kSCREEN_WIDTH/64)
 			{
 				tiletype = TileType::TILETYPE_GROUND;
 			}
@@ -75,27 +75,13 @@ void RenderTiles()
 				tiletype = TileType::TILETYPE_GRASS;
 			}
 			Tile newtile(tiletype, i * 32, y * 32);
-			newtile.set_texture(tiletype);
-			newtile.TileTexture.render(i * 32, y * 32);
+			newtile.RenderTile();
 		}
 	}
 	
 	
 }
-bool LoadTileTexture()
-{
-	//Loading success flag
-	bool success = true;
-	
-	//Load sprite sheet texture
-	if (!TileTexture.LoadTextureFromFile("textures/T_grass_1.png"))
-	{
-		printf("Failed to load sprite sheet texture!\n");
-		success = false;
-	}
-	
-	return success;
-}
+
 LTexture::LTexture()
 {
 	//Initialize
@@ -161,7 +147,7 @@ void LTexture::free()
 	}
 }
 
-void LTexture::render(int x, int y, SDL_Rect* clip)
+void LTexture::Render(int x, int y, SDL_Rect* clip)
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };

@@ -1,8 +1,15 @@
 #include "Tile.h"
 
-void Tile::set_texture(enum TileType tiletype)
+void Tile::SetTexture(enum TileType tiletype)
 {
-	TileTexture.LoadTextureFromFile(GetTileTexturePath(tiletype));
+	tile_texture.LoadTextureFromFile(GetTileTexturePath(tiletype));
+}
+
+void Tile::SetPosition(int posx, int posy)
+{
+	position.xpos = posx;
+	position.ypos = posy;
+
 }
 
 std::string Tile::GetTileTexturePath(enum class TileType tiletype)

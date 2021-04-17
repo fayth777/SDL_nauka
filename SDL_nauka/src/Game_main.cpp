@@ -34,19 +34,14 @@ void close()
 int main(int argc, char* args[])
 {
 	//Start up SDL and create window
-	if (!init())
+	if (!Init())
 	{
 		printf("Failed to initialize!\n");
 	}
 	else
 	{
-		//Load tiles
-		if (!LoadTileTexture())
-		{
-			printf("Failed to load tile texture!\n");
-		}
-		else
-		{
+		
+		
 			//Main loop flag
 			bool quit = false;
 
@@ -75,7 +70,7 @@ int main(int argc, char* args[])
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 			}
-		}
+		
 	}
 
 	//Free resources and close SDL

@@ -1,5 +1,6 @@
 #pragma once
 #include "graphics.h"
+#include "Game_main.h"
 
 extern enum class TileType { TILETYPE_GRASS, TILETYPE_GROUND };
 
@@ -9,20 +10,22 @@ class Tile
 	
 public:
 	Tile(TileType Tiletype, int posx, int posy) {
-		TileType = Tiletype;
-		xpos = posx;
-		ypos = posy;
+		position.xpos=posx;
+		position.ypos = posy;
+		tile_type = Tiletype;
+		SetPosition(posx, posy);
+		SetTexture(Tiletype);
 	};
-	void set_texture(enum TileType tiletype);
-	int xpos=0;
-	int ypos=0;
-	TileType TileType;
-	LTexture TileTexture;
+	void SetTexture(enum TileType tiletype);
+	void SetPosition(int posx, int posy);
+	inline void RenderTile() { tile_texture.Render(position.xpos, position.ypos); };
 
 
 private:
 	
-	std::string TexturePath;
 	std::string GetTileTexturePath(enum class TileType tiletype);
+	TileType tile_type;
+	LTexture tile_texture;
+	Position position;
 };
 

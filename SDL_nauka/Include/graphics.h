@@ -4,6 +4,21 @@
 #include <stdio.h>
 #include <string>
 
+//The window we'll be rendering to
+extern SDL_Window* gWindow;
+
+//The window renderer
+extern SDL_Renderer* gRenderer;
+
+	const int kSCREEN_WIDTH = 1024;
+	const int kSCREEN_HEIGHT = 768;
+
+	//Engine initialization function
+	bool Init(); 
+	
+	//Fill screen with tiles
+	void RenderTiles();
+	
 class LTexture
 {
 public:
@@ -20,7 +35,7 @@ public:
 	void free();
 
 	//Renders texture at given point
-	void render(int x, int y, SDL_Rect* clip = NULL);
+	void Render(int x, int y, SDL_Rect* clip = NULL);
 
 	//Gets image dimensions
 	int getWidth();
@@ -34,16 +49,4 @@ private:
 	int mWidth;
 	int mHeight;
 };
-
-	const int SCREEN_WIDTH = 1024;
-	const int SCREEN_HEIGHT = 768;
-
-	bool init(); 
-
-	//Loads media
-	bool LoadTileTexture();
-	//Fill screen with tiles
-	void RenderTiles();
-	
-
 

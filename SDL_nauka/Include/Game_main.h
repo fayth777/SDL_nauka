@@ -3,5 +3,5 @@
 #include "graphics.h"
 
 
-extern struct Position { int xpos, ypos; };
+struct Position { int xpos, ypos; };
 

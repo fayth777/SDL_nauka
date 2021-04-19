@@ -13,7 +13,7 @@ SDL_Window* gWindow = NULL;
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
 
-
+TileMap tile_map;
 
 
 
@@ -67,7 +67,9 @@ int main(int argc, char* args[])
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-				
+				tile_map.SetTileIndexAndPosition();
+				tile_map.SetTileTexture();
+				tile_map.RenderTiles();
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

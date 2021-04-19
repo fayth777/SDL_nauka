@@ -1,8 +1,8 @@
 #include "Tile.h"
 
-void Tile::SetTexture(enum TileType tiletype)
+void Tile::SetTexture()
 {
-	tile_texture.LoadTextureFromFile(GetTileTexturePath(tiletype));
+	tile_texture.LoadTextureFromFile(GetTileTexturePath(tile_type));
 }
 
 void Tile::SetPosition(int posx, int posy)

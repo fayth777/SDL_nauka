@@ -14,7 +14,7 @@ const int kScreen_width = 1920;
 const int kScreen_height = 1200;
 const int kTile_size = 32;
 
-extern TileMap tile_map;
+
 
 //Engine initialization function
 bool Init(); 

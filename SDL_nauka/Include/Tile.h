@@ -2,7 +2,7 @@
 #include "graphics.h"
 #include "Game_main.h"
 
-extern enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND };
+enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND };
 
 
 class Tile
@@ -15,9 +15,8 @@ public:
 		screen_position.ypos = posy;
 		tile_type = Tiletype;
 		SetPosition(posx, posy);
-		SetTexture(Tiletype);
 	};
-	void SetTexture(enum TileType tiletype);
+	void SetTexture();
 	void SetPosition(int posx, int posy);
 	void RenderTile() ;
 	void SetIndex(int x, int y) 

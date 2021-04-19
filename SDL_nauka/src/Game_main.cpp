@@ -14,6 +14,8 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 TileMap tile_map;
+LTexture test;
+
 
 
 
@@ -66,9 +68,10 @@ int main(int argc, char* args[])
 				//Clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
-
+				
+				test.LoadTextureFromFile("textures/T_ground_1.png");
 				tile_map.SetTileIndexAndPosition();
-				tile_map.SetTileTexture();
+				//tile_map.SetTileTexture();
 				tile_map.RenderTiles();
 
 				//Update screen

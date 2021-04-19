@@ -1,9 +1,27 @@
 #include "Tile.h"
 
+
+
+
+
+
+Tile::Tile()
+{
+	screen_position.xpos = 0;
+	screen_position.ypos = 0;
+	index_x =0;
+	index_y = 0;
+	tile_type = TileType::TILETYPE_NONE;
+
+}
+
 void Tile::SetTexture()
 {
-	tile_texture.LoadTextureFromFile(GetTileTexturePath(tile_type));
+	tile_texture->LoadTextureFromFile(GetTileTexturePath(tile_type));
 }
+
+
+
 
 void Tile::SetPosition(int posx, int posy)
 {
@@ -13,7 +31,9 @@ void Tile::SetPosition(int posx, int posy)
 }
 
 void Tile::RenderTile()
-{ tile_texture.Render(screen_position.xpos, screen_position.ypos); }
+{ tile_texture->Render(screen_position.xpos, screen_position.ypos); }
+
+
 
 std::string Tile::GetTileTexturePath(enum class TileType tiletype)
 {

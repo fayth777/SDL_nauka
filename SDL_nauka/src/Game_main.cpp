@@ -4,6 +4,8 @@
 #include "stdio.h"
 #include "string"
 #include "SDL.h"
+#include "TileMap.h"
+
 
 
 SDL_Window* gWindow = NULL;
@@ -11,14 +13,14 @@ SDL_Window* gWindow = NULL;
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
 
-LTexture TileTexture;
+
 
 
 
 void close()
 {
 	//Free loaded images
-	TileTexture.free();
+
 
 	//Destroy window	
 	SDL_DestroyRenderer(gRenderer);
@@ -65,7 +67,7 @@ int main(int argc, char* args[])
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-				RenderTiles();
+				
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

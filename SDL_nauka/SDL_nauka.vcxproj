@@ -146,18 +146,19 @@
     <Image Include="..\..\SDL_nauka_temp\textures\T_grass_1.png" />
     <Image Include="..\..\SDL_nauka_temp\textures\T_ground_1.png" />
     <Image Include="..\..\SDL_nauka_temp\textures\T_trees_1.png" />
+    <Image Include="E:\Assets\VilliageDefense\T_empty_tile.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Game_main.h" />
     <ClInclude Include="Include\graphics.h" />
     <ClInclude Include="Include\Tile.h" />
-    <ClInclude Include="TileMap.h" />
+    <ClInclude Include="Include\TileMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game_main.cpp" />
     <ClCompile Include="src\graphics.cpp" />
     <ClCompile Include="src\Tile.cpp" />
-    <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="src\TileMap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

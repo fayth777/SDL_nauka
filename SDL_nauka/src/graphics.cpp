@@ -1,10 +1,13 @@
 #pragma once
+#include "SDL.h"
 #include "graphics.h"
 #include "Game_main.h"
 #include "Tile.h"
+#include "TileMap.h"
 
 
 
+ 
 bool Init()
 {
 	//Initialization flag
@@ -25,7 +28,7 @@ bool Init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, kSCREEN_WIDTH, kSCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, kScreen_width, kScreen_height, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -58,30 +61,6 @@ bool Init()
 
 	return success;
 }
-void RenderTiles()
-{
-
-	for (size_t y = 0; y < kSCREEN_HEIGHT / 32; y++)
-	{
-		for (size_t i = 0; i < kSCREEN_WIDTH / 32; i++)
-		{
-			TileType tiletype;
-			if (i<kSCREEN_WIDTH/64)
-			{
-				tiletype = TileType::TILETYPE_GROUND;
-			}
-			else
-			{
-				tiletype = TileType::TILETYPE_GRASS;
-			}
-			Tile newtile(tiletype, i * 32, y * 32);
-			newtile.RenderTile();
-		}
-	}
-	
-	
-}
-
 LTexture::LTexture()
 {
 	//Initialize

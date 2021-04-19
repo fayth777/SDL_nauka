@@ -2,30 +2,34 @@
 #include "graphics.h"
 #include "Game_main.h"
 
-extern enum class TileType { TILETYPE_GRASS, TILETYPE_GROUND };
+extern enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND };
 
 
 class Tile
 {
-	
+
 public:
-	Tile(TileType Tiletype, int posx, int posy) {
-		position.xpos=posx;
-		position.ypos = posy;
+
+	Tile(TileType Tiletype=(TileType::TILETYPE_NONE), int posx = 0, int posy = 0) {
+		screen_position.xpos=posx;
+		screen_position.ypos = posy;
 		tile_type = Tiletype;
 		SetPosition(posx, posy);
 		SetTexture(Tiletype);
 	};
 	void SetTexture(enum TileType tiletype);
 	void SetPosition(int posx, int posy);
-	inline void RenderTile() { tile_texture.Render(position.xpos, position.ypos); };
-
+	void RenderTile() ;
+	void SetIndex(int x, int y) 
+	{	index_x = x; index_y = y;}
 
 private:
 	
 	std::string GetTileTexturePath(enum class TileType tiletype);
 	TileType tile_type;
 	LTexture tile_texture;
-	Position position;
+	Position screen_position;
+	int index_x;
+	int index_y;
 };
 

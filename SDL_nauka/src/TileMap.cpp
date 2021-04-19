@@ -15,6 +15,11 @@ void TileMap::SetTileIndexAndPosition()
 	}
 }
 
+void TileMap::SetAllTileType()
+{
+
+}
+
 void TileMap::SetTileTexture()
 {
 	for (size_t y = 0; y < row_total_amount; y++)

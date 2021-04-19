@@ -10,6 +10,7 @@ public:
 		starting_tile = tiles_2darray[column_total_amount / 2][row_total_amount / 2];
 	};
 	void SetTileIndexAndPosition();
+	void SetAllTileType();
 	void SetTileTexture();
 	void RenderTiles();
 

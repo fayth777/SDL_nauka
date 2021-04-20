@@ -32,7 +32,7 @@ void TileMap::SetTileTexture()
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
 
-			tiles_2darray[x][y].SetTexture();
+			tiles_2darray[x][y].GetTileTexture();
 		}
 	}
 }

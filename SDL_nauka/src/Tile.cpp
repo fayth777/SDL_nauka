@@ -1,7 +1,5 @@
 #include "Tile.h"
-
-
-
+#include "TextureDatabase.h"
 
 
 
@@ -10,18 +8,10 @@ Tile::Tile()
 	screen_position.xpos = 0;
 	screen_position.ypos = 0;
 	index_x =0;
-	index_y = 0;
+	index_y =0;
 	tile_type = TileType::TILETYPE_NONE;
 
 }
-
-void Tile::SetTexture()
-{
-	tile_texture->LoadTextureFromFile(GetTileTexturePath(tile_type));
-}
-
-
-
 
 void Tile::SetPosition(int posx, int posy)
 {
@@ -35,20 +25,20 @@ void Tile::RenderTile()
 
 
 
-std::string Tile::GetTileTexturePath(enum class TileType tiletype)
+void Tile::GetTileTexture()
 {
-	std::string path;
-	switch (tiletype)
+	
+	switch (tile_type)
 	{
 	case TileType::TILETYPE_NONE:
-		path = "textures/T_empty_tile.png";
+		tile_texture =  &TextureDatabase::T_empty_tile;
 		break;
 	case TileType::TILETYPE_GRASS:
-		path = "textures/T_grass_1.png";
+		tile_texture = &TextureDatabase::T_grass_1;
 		break;
 	case TileType::TILETYPE_GROUND:
-		path = "textures/T_ground_1.png";
+		tile_texture = &TextureDatabase::T_ground_1;
 		break;
 	}
-	return path;
+	return;
 }

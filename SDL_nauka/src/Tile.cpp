@@ -31,13 +31,13 @@ void Tile::GetTileTexture()
 	switch (tile_type)
 	{
 	case TileType::TILETYPE_NONE:
-		tile_texture =  &TextureDatabase::T_empty_tile;
+		tile_texture =  TextureDatabase::Get(TileType::TILETYPE_NONE);
 		break;
 	case TileType::TILETYPE_GRASS:
-		tile_texture = &TextureDatabase::T_grass_1;
+		tile_texture = TextureDatabase::Get(TileType::TILETYPE_GRASS);
 		break;
 	case TileType::TILETYPE_GROUND:
-		tile_texture = &TextureDatabase::T_ground_1;
+		tile_texture = TextureDatabase::Get(TileType::TILETYPE_GROUND);
 		break;
 	}
 	return;

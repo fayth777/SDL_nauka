@@ -1,21 +1,18 @@
 #pragma once
 #include "LTexture.h"
+#include "Tile.h"
+#include <map>
+
 
 class TextureDatabase
 {
 public:
-	
-	static LTexture T_empty_tile;
-	static LTexture T_ground_1;
-	static LTexture T_grass_1;
-
-	
 
 	static void LoadTextures();
+	static LTexture* Get(TileType type);
+
 private:
-	inline static LTexture tile_textures_arr[3]{
-		 T_empty_tile, T_ground_1, T_grass_1
-	};
+	static std::map<TileType, LTexture*> *textures;
 
 };
 

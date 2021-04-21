@@ -12,7 +12,7 @@ public:
 	static LTexture* Get(TileType type);
 
 private:
-	static std::map<TileType, LTexture*> *textures;
+	static std::map<TileType, LTexture*> textures;
 
 };
 

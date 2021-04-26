@@ -3,7 +3,7 @@
 #include "Game_main.h"
 #include "LTexture.h"
 
-enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND };
+enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND, TILETYPE_FOREST };
 extern LTexture T_empty_tile;
 
 

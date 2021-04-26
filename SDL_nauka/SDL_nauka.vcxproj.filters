@@ -24,11 +24,23 @@
     <Image Include="..\..\SDL_nauka_temp\textures\T_ground_1.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
-    <Image Include="..\..\SDL_nauka_temp\textures\T_trees_1.png">
+    <Image Include="..\..\SDL_nauka_temp\textures\T_forest_1.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="E:\Assets\VilliageDefense\T_empty_tile.png">
       <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\T_trees_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\T_ground_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\T_empty_tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\T_grass_1.png">
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

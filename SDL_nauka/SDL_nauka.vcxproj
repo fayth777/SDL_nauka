@@ -146,8 +146,12 @@
   <ItemGroup>
     <Image Include="..\..\SDL_nauka_temp\textures\T_grass_1.png" />
     <Image Include="..\..\SDL_nauka_temp\textures\T_ground_1.png" />
-    <Image Include="..\..\SDL_nauka_temp\textures\T_trees_1.png" />
+    <Image Include="..\..\SDL_nauka_temp\textures\T_forest_1.png" />
     <Image Include="E:\Assets\VilliageDefense\T_empty_tile.png" />
+    <Image Include="textures\T_empty_tile.png" />
+    <Image Include="textures\T_grass_1.png" />
+    <Image Include="textures\T_ground_1.png" />
+    <Image Include="textures\T_trees_1.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Game_main.h" />

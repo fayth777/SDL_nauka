@@ -39,6 +39,9 @@ void Tile::GetTileTexture()
 	case TileType::TILETYPE_GROUND:
 		tile_texture = TextureDatabase::Get(TileType::TILETYPE_GROUND);
 		break;
+	case TileType::TILETYPE_FOREST:
+		tile_texture = TextureDatabase::Get(TileType::TILETYPE_FOREST);
+		break;
 	}
 	return;
 }

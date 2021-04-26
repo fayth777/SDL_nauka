@@ -1,11 +1,7 @@
 #include "TileMap.h"
 
-Tile tiles_2darray;
 
-TileMap::TileMap()
-{
-		starting_tile = tiles_2darray[column_total_amount / 2][row_total_amount / 2];
-}
+
 
 void TileMap::SetTileIndexAndPosition()
 {
@@ -13,8 +9,8 @@ void TileMap::SetTileIndexAndPosition()
 	{
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
-			tiles_2darray[x][y].SetIndex(x, y);
-			tiles_2darray[x][y].SetPosition(x*kTile_size, y*kTile_size);
+			tiles_2Dvect[x][y].SetIndex(x, y);
+			tiles_2Dvect[x][y].SetPosition(x*kTile_size, y*kTile_size);
 
 		}
 	}
@@ -32,7 +28,7 @@ void TileMap::SetTileTexture()
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
 
-			tiles_2darray[x][y].GetTileTexture();
+			tiles_2Dvect[x][y].GetTileTexture();
 		}
 	}
 }
@@ -45,8 +41,13 @@ void TileMap::RenderTiles()
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
 
-			tiles_2darray[x][y].RenderTile();
+			tiles_2Dvect[x][y].RenderTile();
 		}
 	}
 
+}
+
+Tile TileMap::GetStartingTile()
+{
+		return tiles_2Dvect[row_total_amount / 2][column_total_amount / 2];
 }

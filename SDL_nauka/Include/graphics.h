@@ -13,7 +13,8 @@ extern SDL_Renderer* gRenderer;
 
 const int kScreen_width = 1920;
 const int kScreen_height = 1200;
-const int kTile_size = 32;
+
+
 
 
 

@@ -16,9 +16,9 @@ public:
 	void SetPosition(int posx, int posy);
 	void RenderTile() ;
 	inline void SetIndex(int x, int y) {index_x = x; index_y = y;}
+	inline void SetTileType(enum class TileType type) {tile_type = type;};
 	void GetTileTexture();
 
-	
 
 private:
 	

@@ -63,6 +63,8 @@ int main(int argc, char* args[])
 				SDL_RenderClear(gRenderer);
 				
 				TextureDatabase::LoadTextures();
+				TileMap::GetTileMap().FillAllTilesGrids();
+				TileMap::GetTileMap().SetAllTileType();
 				TileMap::GetTileMap().SetTileIndexAndPosition();
 				TileMap::GetTileMap().SetTileTexture();
 				TileMap::GetTileMap().RenderTiles();

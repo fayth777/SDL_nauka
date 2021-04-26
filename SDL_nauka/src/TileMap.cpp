@@ -18,36 +18,59 @@ void TileMap::SetTileIndexAndPosition()
 
 void TileMap::FillAllTilesGrids()
 {
-	for (size_t gridx = 0; gridx < tile_single_grid_row_size; gridx++)
+	for (size_t gridx = 0; gridx < grids_vector_side_size; gridx++)
 	{
-		for (size_t gridy = 0; gridy < tile_single_grid_column_size; gridy++)
+		for (size_t gridy = 0; gridy < grids_vector_side_size; gridy++)
 		{
 			tiles_grids[gridx][gridy] = FillSingleGrid(gridx,gridy);
 		}
 	}
 }
 
-TilesGrid TileMap::FillSingleGrid(int gridx, int gridy)
+TileGrid TileMap::FillSingleGrid(int gridx, int gridy)
 {
-	TilesGrid tiles_grid;
+	TileGrid tiles_grid;
 	
-	for (size_t x = 0; x < tile_single_grid_row_size; x++)
+	for (size_t x = 0; x < grid_row_size; x++)
 	{
-		for (size_t y = 0; y < tile_single_grid_column_size; y++)
+		for (size_t y = 0; y < grid_column_size; y++)
 		{
-			tiles_grid.tiles_single_grid[x][y] = &tiles_all[0 + tile_single_grid_column_size * gridx][0 + tile_single_grid_row_size * gridy];
+			tiles_grid.tiles_single_grid[x][y] = &tiles_all[x + grid_column_size * gridx][y + grid_row_size * gridy];
 			
 		}
 	}
-	return TilesGrid();
+	return tiles_grid;
 }
 
 
 
 void TileMap::SetAllTileType()
 {
+	{
+		for (size_t gridx = 0; gridx < grids_vector_side_size; gridx++)
+		{
+			for (size_t gridy = 0; gridy < grids_vector_side_size; gridy++)
+			{
+				SetGridType(tiles_grids[gridx][gridy], TileType::TILETYPE_GRASS);
+			}
+		}
+	}
+}
+
+void TileMap::SetGridType(TileGrid& grid, enum class TileType type)
+{
+
+	for (size_t x = 0; x < grid_row_size; x++)
+	{
+		for (size_t y = 0; y < grid_column_size; y++)
+		{
+
+			grid.tiles_single_grid[x][y]->SetTileType(type);
+		}
+	}
 
 }
+
 
 void TileMap::SetTileTexture()
 {
@@ -60,6 +83,7 @@ void TileMap::SetTileTexture()
 		}
 	}
 }
+
 
 //Fill screen with tiles
 void TileMap::RenderTiles()

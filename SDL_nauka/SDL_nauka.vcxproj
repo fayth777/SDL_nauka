@@ -160,6 +160,7 @@
     <ClInclude Include="Include\TextureDatabase.h" />
     <ClInclude Include="Include\Tile.h" />
     <ClInclude Include="Include\TileMap.h" />
+    <ClInclude Include="Include\TileGrid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game_main.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="src\TextureDatabase.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
+    <ClCompile Include="src\TileGrid.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

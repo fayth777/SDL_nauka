@@ -12,13 +12,6 @@
 
 
 
-
-TileMap tile_map;
-LTexture test;
-
-
-
-
 void close()
 {
 	//Free loaded images
@@ -70,9 +63,9 @@ int main(int argc, char* args[])
 				SDL_RenderClear(gRenderer);
 				
 				TextureDatabase::LoadTextures();
-				tile_map.SetTileIndexAndPosition();
-				tile_map.SetTileTexture();
-				tile_map.RenderTiles();
+				TileMap::GetTileMap().SetTileIndexAndPosition();
+				TileMap::GetTileMap().SetTileTexture();
+				TileMap::GetTileMap().RenderTiles();
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);

@@ -8,8 +8,10 @@
 struct TileGrid
 {
 public: 
-	TileGrid() : tiles_single_grid(30, std::vector < Tile*>(30)) {}
+	TileGrid() : tiles_single_grid(0, std::vector < Tile*>(0)), tiles_amount(0){};
+	TileGrid(int xsize, int ysize) : tiles_single_grid(xsize, std::vector < Tile*>(ysize)),tiles_amount(xsize*ysize) {}
 	std::vector<std::vector<Tile*>> tiles_single_grid;
+	int tiles_amount;
 };
 
 class TileMap
@@ -31,7 +33,7 @@ public:
 	TileGrid FillSingleGrid(int gridx, int gridy);
 	void SetAllTileType();
 	void SetTileTexture();
-	void SetGridType(TileGrid &grid, enum class TileType type);
+	void SetGridType(TileGrid &grid,int density, enum class TileType type1, enum class TileType type2);
 
 	inline int GetGridsVectorSideSize() { return grids_vector_side_size; };
 	inline int GetGridRowSize() { return grid_row_size; };
@@ -46,8 +48,8 @@ private:
 	
 	const int kTile_size = 32;
 	Tile starting_tile;
-	inline static int column_total_amount = 300;
-	inline static int row_total_amount = 300;
+	inline static int column_total_amount = 100;
+	inline static int row_total_amount = 100;
 	int grids_vector_side_size = 10;
 	int grid_row_size = row_total_amount / grids_vector_side_size;
 	int grid_column_size = column_total_amount / grids_vector_side_size;

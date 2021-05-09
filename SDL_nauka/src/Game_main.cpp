@@ -64,13 +64,13 @@ int main(int argc, char* args[])
 				
 				TextureDatabase::LoadTextures();
 				TileMap::GetTileMap().FillAllTilesGrids();
-				TileMap::GetTileMap().SetAllTileType();
 				TileMap::GetTileMap().SetTileIndexAndPosition();
-				TileMap::GetTileMap().SetTileTexture();
-				TileMap::GetTileMap().RenderTiles();
+				TileMap::GetTileMap().SetAllTileType();
+				// TileMap::GetTileMap().SetTileTexture();
+				// TileMap::GetTileMap().RenderTiles();
 
-				//Update screen
-				SDL_RenderPresent(gRenderer);
+				// SDL_RenderPresent(gRenderer);
+				
 			}
 		
 	}

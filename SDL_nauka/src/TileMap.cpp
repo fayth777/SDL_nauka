@@ -29,7 +29,7 @@ void TileMap::FillAllTilesGrids()
 
 TileGrid TileMap::FillSingleGrid(int gridx, int gridy)
 {
-	TileGrid tiles_grid(TileMap::GetTileMap().GetGridRowSize(), TileMap::GetTileMap().GetGridColumnSize());
+	TileGrid tiles_grid(TileMap::GetTileMap().grid_row_size, TileMap::GetTileMap().grid_column_size);
 	
 	for (size_t x = 0; x < grid_row_size; x++)
 	{
@@ -79,24 +79,34 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 	int s = 1; // chain size
 
 	// starting point
-	x = ((int)floor(grids_vector_side_size / 2.0))-1;
-	y = ((int)floor(grids_vector_side_size / 2.0))-1;
+	x = ((int)floor(grids_vector_side_size / 2.0-1));
+	y = ((int)floor(grids_vector_side_size / 2.0-1));
 
-	for (int k = 1; k <= (grids_vector_side_size - 1); k++)
+	for (int k = 1; k <= (grids_vector_side_size)-1; k++)
 	{
-		for (int j = 0; j < (k < (grids_vector_side_size - 1) ? 2 : 3); j++)
+		for (int j = 0; j <= (k < (grids_vector_side_size-1 ) ? 2 : 3); j++)
 		{
 			for (int i = 0; i < s; i++)
 			{
 				if (type1_tile_amount>0)
 				{
 					grid.tiles_single_grid[x][y]->SetTileType(type1);
+
+					grid.tiles_single_grid[x][y]->GetTileTexture();
+					grid.tiles_single_grid[x][y]->RenderTile();
+
+					SDL_Delay(10);
+					SDL_RenderPresent(gRenderer);
 					type1_tile_amount--;
 				}
 				else
 				{
 					grid.tiles_single_grid[x][y]->SetTileType(type2);
 
+					grid.tiles_single_grid[x][y]->GetTileTexture();
+					grid.tiles_single_grid[x][y]->RenderTile();
+					SDL_Delay(10);
+					SDL_RenderPresent(gRenderer);
 				}
 
 				c++;
@@ -124,6 +134,7 @@ void TileMap::SetTileTexture()
 		{
 
 			tiles_all[x][y].GetTileTexture();
+			
 		}
 	}
 }
@@ -138,6 +149,8 @@ void TileMap::RenderTiles()
 		{
 
 			tiles_all[x][y].RenderTile();
+		
+
 		}
 	}
 

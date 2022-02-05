@@ -127,9 +127,7 @@ void TileMap::SetTileTexture()
 	{
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
-
 			tiles_all[x][y].GetTileTexture();
-			
 		}
 	}
 }
@@ -142,10 +140,7 @@ void TileMap::RenderTiles()
 	{
 		for (size_t x = 0; x < column_total_amount; x++)
 		{
-
 			tiles_all[x][y].RenderTile();
-		
-
 		}
 	}
 
@@ -154,4 +149,16 @@ void TileMap::RenderTiles()
 Tile TileMap::GetStartingTile()
 {
 		return tiles_all[row_total_amount / 2][column_total_amount / 2];
+}
+
+void TileMap::CheckForTileEvents(SDL_Event* EventHandler)
+{
+	for (size_t y = 0; y < row_total_amount; y++)
+	{
+		for (size_t x = 0; x < column_total_amount; x++)
+		{
+			tiles_all[x][y].HandleEvent(EventHandler);
+		}
+	}
+
 }

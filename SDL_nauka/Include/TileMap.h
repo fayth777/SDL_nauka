@@ -44,6 +44,8 @@ public:
 	inline static int Get_Colums_amount() { return column_total_amount; };
 	inline static int Get_Row_amount() { return row_total_amount; };
 
+	void CheckForTileEvents(SDL_Event* EventHandler);
+
 private:
 	
 	const int kTile_size = 32;

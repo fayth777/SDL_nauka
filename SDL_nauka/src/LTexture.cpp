@@ -39,7 +39,7 @@ bool LTexture::LoadTextureFromFile()
 	}
 	else
 	{
-
+		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 0, 0));
 
 		//Create texture from surface pixels
 		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
@@ -52,6 +52,7 @@ bool LTexture::LoadTextureFromFile()
 			//Get image dimensions
 			mWidth = loadedSurface->w;
 			mHeight = loadedSurface->h;
+
 		}
 
 		//Get rid of old loaded surface
@@ -90,6 +91,23 @@ void LTexture::Render(int x, int y, SDL_Rect* clip)
 	SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
 }
 
+void LTexture::setColor(Uint8 red, Uint8 green, Uint8 blue)
+{
+	//Modulate texture
+	SDL_SetTextureColorMod(mTexture, red, green, blue);
+}
+
+void LTexture::setBlendMode(SDL_BlendMode blending)
+{
+	//Set blending function
+	SDL_SetTextureBlendMode(mTexture, blending);
+}
+
+void LTexture::setAlpha(Uint8 alpha)
+{
+	//Modulate texture alpha
+	SDL_SetTextureAlphaMod(mTexture, alpha);
+}
 int LTexture::getWidth()
 {
 	return mWidth;

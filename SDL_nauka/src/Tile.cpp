@@ -5,43 +5,132 @@
 
 Tile::Tile()
 {
-	screen_position.xpos = 0;
-	screen_position.ypos = 0;
-	index_x =0;
-	index_y =0;
-	tile_type = TileType::TILETYPE_NONE;
-
+	Position.x = 0;
+	Position.y = 0;
+	IndexX =0;
+	IndexY =0;
+	TileType = TileType::TILETYPE_NONE;
+	TileState = TileState::IDLE;
+	Size.x = 32;
+	Size.y = 32;
 }
 
 void Tile::SetPosition(int posx, int posy)
 {
-	screen_position.xpos = posx;
-	screen_position.ypos = posy;
+	Position.x = posx;
+	Position.y = posy;
 
 }
 
 void Tile::RenderTile()
-{ tile_texture->Render(screen_position.xpos, screen_position.ypos); }
+{ TileTexture->Render(Position.x, Position.y); }
+
+void Tile::OnPressed()
+{
+}
+
+void Tile::OnRelease()
+{
+}
+
+void Tile::OnOverlap()
+{
+	TileTexture->setAlpha(120);
+}
+
+void Tile::OnOverlapEnd()
+{
+}
 
 
 
 void Tile::GetTileTexture()
 {
 	
-	switch (tile_type)
+	switch (TileType)
 	{
 	case TileType::TILETYPE_NONE:
-		tile_texture =  TextureDatabase::GetTileTexture(TileType::TILETYPE_NONE);
+		TileTexture =  TextureDatabase::GetTileTexture(TileType::TILETYPE_NONE);
 		break;
 	case TileType::TILETYPE_GRASS:
-		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GRASS);
+		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GRASS);
 		break;
 	case TileType::TILETYPE_GROUND:
-		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GROUND);
+		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GROUND);
 		break;
 	case TileType::TILETYPE_FOREST:
-		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_FOREST);
+		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_FOREST);
 		break;
 	}
 	return;
+}
+
+void Tile::SetSizeFromTexture()
+{
+	Size.x = (TileTexture != nullptr) ?	TileTexture->getWidth() : 0;
+	Size.y = (TileTexture != nullptr) ? TileTexture->getHeight() : 0;
+}
+
+void Tile::HandleEvent(SDL_Event* EventHandler)
+{
+	//If mouse event happened
+	if (EventHandler->type == SDL_MOUSEMOTION || EventHandler->type == SDL_MOUSEBUTTONDOWN || EventHandler->type == SDL_MOUSEBUTTONUP)
+	{
+		//Get mouse position
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+		//Check if mouse is in button
+		bool inside = true;
+
+		//Mouse is left of the button
+		if (x < Position.x)
+		{
+			inside = false;
+		}
+		//Mouse is right of the button
+		else if (x > Position.x + Size.x)
+		{
+			inside = false;
+		}
+		//Mouse above the button
+		else if (y < Position.y)
+		{
+			inside = false;
+		}
+		//Mouse below the button
+		else if (y > Position.y + Size.y)
+		{
+			inside = false;
+		}
+
+		//Mouse is outside button
+		if (!inside)
+		{
+			TileState = TileState::IDLE;
+			OnOverlapEnd();
+		}
+		//Mouse is inside button
+		else
+		{
+			//Set mouse over sprite
+			switch (EventHandler->type)
+			{
+			case SDL_MOUSEMOTION:
+				TileState = TileState::OVERLAP;
+				OnOverlap();
+				break;
+
+			case SDL_MOUSEBUTTONDOWN:
+				TileState = TileState::PRESSED;
+				OnPressed();
+				break;
+
+			case SDL_MOUSEBUTTONUP:
+				TileState = TileState::RELEASED;
+				OnRelease();
+				break;
+			}
+
+		}
+	}
 }

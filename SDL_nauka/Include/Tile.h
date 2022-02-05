@@ -4,8 +4,7 @@
 #include "LTexture.h"
 
 enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND, TILETYPE_FOREST };
-extern LTexture T_empty_tile;
-
+enum class TileState { IDLE, OVERLAP, PRESSED, RELEASED};
 
 class Tile
 {
@@ -14,19 +13,31 @@ public:
 
 	Tile();
 	void SetPosition(int posx, int posy);
-	void RenderTile() ;
-	inline void SetIndex(int x, int y) {index_x = x; index_y = y;}
-	inline void SetTileType(enum class TileType type) {tile_type = type;};
+	inline void SetIndex(int x, int y) {IndexX = x; IndexY = y;}
+	inline void SetTileType(enum class TileType type) {TileType = type;};
+	void SetSizeFromTexture();
+
+	void HandleEvent(SDL_Event* EventHandler);
+	
 	void GetTileTexture();
 
+	void RenderTile();
+
+	void OnPressed();
+	void OnRelease();
+
+	void OnOverlap();
+	void OnOverlapEnd();
 
 private:
 	
-	TileType tile_type;
-	LTexture* tile_texture = NULL;
-	Position screen_position;
-	int index_x;
-	int index_y;
+	TileType TileType;
+	TileState TileState;
+	LTexture* TileTexture = nullptr;
+	SDL_Point Position;
+	SDL_Point Size;
+	int IndexX;
+	int IndexY;
 	
 };
 

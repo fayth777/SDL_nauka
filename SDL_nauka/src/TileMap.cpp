@@ -94,9 +94,6 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 
 					grid.tiles_single_grid[x][y]->GetTileTexture();
 					grid.tiles_single_grid[x][y]->RenderTile();
-
-					SDL_Delay(10);
-					SDL_RenderPresent(gRenderer);
 					type1_tile_amount--;
 				}
 				else
@@ -105,8 +102,6 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 
 					grid.tiles_single_grid[x][y]->GetTileTexture();
 					grid.tiles_single_grid[x][y]->RenderTile();
-					SDL_Delay(10);
-					SDL_RenderPresent(gRenderer);
 				}
 
 				c++;

@@ -1,8 +1,8 @@
 #include "TextureDatabase.h"
-#include "LTexture.h"
-#include <algorithm>
+
 
 std::map<TileType, LTexture*> TextureDatabase::tile_textures;
+LTexture* TextureDatabase::CursorTexture;
 
 void TextureDatabase::LoadTextures()
 {
@@ -18,9 +18,21 @@ void TextureDatabase::LoadTextures()
 		it->second->LoadTextureFromFile();
 	}
 
+
+	TextureDatabase::CursorTexture = new LTexture("textures/mouse_pointer.png");
+	TextureDatabase::CursorTexture->LoadTextureFromFile();
 }
 
-LTexture* TextureDatabase::Get(TileType type)
+LTexture* TextureDatabase::GetTileTexture(TileType type)
 {
 	return TextureDatabase::tile_textures.at(type);
+}
+
+LTexture* TextureDatabase::GetCursorTexture()
+{
+	if (TextureDatabase::CursorTexture==nullptr)
+	{
+		printf("No Cursor texture!\n");
+	}
+	return TextureDatabase::CursorTexture;
 }

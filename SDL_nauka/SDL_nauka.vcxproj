@@ -154,6 +154,7 @@
     <Image Include="textures\T_trees_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Cursor.h" />
     <ClInclude Include="Include\Game_main.h" />
     <ClInclude Include="Include\graphics.h" />
     <ClInclude Include="Include\LTexture.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Include\TileGrid.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Cursor.cpp" />
     <ClCompile Include="src\Game_main.cpp" />
     <ClCompile Include="src\graphics.cpp" />
     <ClCompile Include="src\LTexture.cpp" />

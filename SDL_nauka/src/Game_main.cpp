@@ -1,15 +1,13 @@
 
 #include "Game_main.h"
+#include "SDL.h"
 #include "graphics.h"
 #include "stdio.h"
 #include "string"
 #include "LTexture.h"
-#include "SDL.h"
 #include "TileMap.h"
 #include "TextureDatabase.h"
-
-
-
+#include "Cursor.h"
 
 
 void close()
@@ -43,33 +41,42 @@ int main(int argc, char* args[])
 			bool quit = false;
 
 			//Event handler
-			SDL_Event event_handler;
+			SDL_Event EventHandler;
+
+			// Init Graphics
+			TextureDatabase::LoadTextures();
+
+			// Mouse Cursor
+			Cursor Cursor;
 
 			//While application is running
 			while (!quit)
 			{
 				//Handle events on queue
-				while (SDL_PollEvent(&event_handler) != 0)
+				while (SDL_PollEvent(&EventHandler) != 0)
 				{
 					//User requests quit
-					if (event_handler.type == SDL_QUIT)
+					if (EventHandler.type == SDL_QUIT)
 					{
 						quit = true;
 					}
+					// Handle Input for the cursor
+					Cursor.handleEvent(EventHandler);
 				}
-		
+				
+				//Move the cursor
+				Cursor.move();
 				//Clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 				
-				TextureDatabase::LoadTextures();
 				TileMap::GetTileMap().FillAllTilesGrids();
 				TileMap::GetTileMap().SetTileIndexAndPosition();
 				TileMap::GetTileMap().SetAllTileType();
 				// TileMap::GetTileMap().SetTileTexture();
 				// TileMap::GetTileMap().RenderTiles();
-
-				// SDL_RenderPresent(gRenderer);
+				Cursor.render();
+				SDL_RenderPresent(gRenderer);
 				
 			}
 		

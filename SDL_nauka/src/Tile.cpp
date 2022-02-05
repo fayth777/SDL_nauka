@@ -31,16 +31,16 @@ void Tile::GetTileTexture()
 	switch (tile_type)
 	{
 	case TileType::TILETYPE_NONE:
-		tile_texture =  TextureDatabase::Get(TileType::TILETYPE_NONE);
+		tile_texture =  TextureDatabase::GetTileTexture(TileType::TILETYPE_NONE);
 		break;
 	case TileType::TILETYPE_GRASS:
-		tile_texture = TextureDatabase::Get(TileType::TILETYPE_GRASS);
+		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GRASS);
 		break;
 	case TileType::TILETYPE_GROUND:
-		tile_texture = TextureDatabase::Get(TileType::TILETYPE_GROUND);
+		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GROUND);
 		break;
 	case TileType::TILETYPE_FOREST:
-		tile_texture = TextureDatabase::Get(TileType::TILETYPE_FOREST);
+		tile_texture = TextureDatabase::GetTileTexture(TileType::TILETYPE_FOREST);
 		break;
 	}
 	return;

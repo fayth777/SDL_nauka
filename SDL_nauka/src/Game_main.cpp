@@ -61,22 +61,23 @@ int main(int argc, char* args[])
 						quit = true;
 					}
 					// Handle Input for the cursor
-					/*else
+					else
 					{
 						TileMap::GetTileMap().CheckForTileEvents(&EventHandler);
-					}*/
+					}
 					//Cursor.handleEvent(EventHandler);
 				}
 				
-				TileMap::GetTileMap().FillAllTilesGrids();
-				TileMap::GetTileMap().SetTileIndexAndPosition();
-				TileMap::GetTileMap().SetAllTileType();
+		
 				//Move the cursor
 				//Cursor.move();
 				//Clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
-				
+
+				TileMap::GetTileMap().FillAllTilesGrids();
+				TileMap::GetTileMap().SetTileIndexAndPosition();
+				TileMap::GetTileMap().SetAllTileType();
 
 				// TileMap::GetTileMap().SetTileTexture();
 				// TileMap::GetTileMap().RenderTiles();

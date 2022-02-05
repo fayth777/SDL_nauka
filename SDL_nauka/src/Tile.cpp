@@ -27,15 +27,18 @@ void Tile::RenderTile()
 
 void Tile::OnPressed()
 {
+	TileTexture->setAlpha(120);
+
 }
 
 void Tile::OnRelease()
 {
+	TileTexture->setAlpha(255);
+
 }
 
 void Tile::OnOverlap()
 {
-	TileTexture->setAlpha(120);
 }
 
 void Tile::OnOverlapEnd()

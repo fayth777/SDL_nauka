@@ -19,7 +19,6 @@ void Tile::SetPosition(int posx, int posy)
 {
 	Position.x = posx;
 	Position.y = posy;
-
 }
 
 void Tile::RenderTile()
@@ -43,6 +42,13 @@ void Tile::OnOverlap()
 
 void Tile::OnOverlapEnd()
 {
+}
+
+void Tile::PrintState()
+{
+	printf("Tile Parameters: ");
+	printf("Position: %i, %i ", Position.x, Position.y);
+	printf("Size: %i, %i ", Size.x, Size.y);
 }
 
 
@@ -76,12 +82,15 @@ void Tile::SetSizeFromTexture()
 
 void Tile::HandleEvent(SDL_Event* EventHandler)
 {
+
 	//If mouse event happened
 	if (EventHandler->type == SDL_MOUSEMOTION || EventHandler->type == SDL_MOUSEBUTTONDOWN || EventHandler->type == SDL_MOUSEBUTTONUP)
 	{
 		//Get mouse position
 		int x, y;
 		SDL_GetMouseState(&x, &y);
+
+
 		//Check if mouse is in button
 		bool inside = true;
 

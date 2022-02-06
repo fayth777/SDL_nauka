@@ -91,17 +91,12 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 				if (type1_tile_amount>0)
 				{
 					grid.tiles_single_grid[x][y]->SetTileType(type1);
-
-					grid.tiles_single_grid[x][y]->GetTileTexture();
-					grid.tiles_single_grid[x][y]->RenderTile();
 					type1_tile_amount--;
 				}
 				else
 				{
 					grid.tiles_single_grid[x][y]->SetTileType(type2);
 
-					grid.tiles_single_grid[x][y]->GetTileTexture();
-					grid.tiles_single_grid[x][y]->RenderTile();
 				}
 
 				c++;

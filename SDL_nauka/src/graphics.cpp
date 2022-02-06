@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "graphics.h"
-#include "Game_main.h"
+#include "GameMain.h"
 #include "Tile.h"
 #include "TileMap.h"
 

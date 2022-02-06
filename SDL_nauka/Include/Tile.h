@@ -1,12 +1,13 @@
 #pragma once
 #include "graphics.h"
-#include "Game_main.h"
+#include "GameMain.h"
+#include "GameObject.h"
 #include "LTexture.h"
 
 enum class TileType { TILETYPE_NONE, TILETYPE_GRASS, TILETYPE_GROUND, TILETYPE_FOREST };
 enum class TileState { IDLE, OVERLAP, PRESSED, RELEASED};
 
-class Tile
+class Tile: public GameObject
 {
 
 public:
@@ -29,6 +30,8 @@ public:
 	void OnOverlap();
 	void OnOverlapEnd();
 
+	void PrintState();
+
 private:
 	
 	TileType TileType;
@@ -38,6 +41,7 @@ private:
 	SDL_Point Size;
 	int IndexX;
 	int IndexY;
+	bool test=false;
 	
 };
 

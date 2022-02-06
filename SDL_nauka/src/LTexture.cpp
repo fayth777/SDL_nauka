@@ -1,7 +1,7 @@
 #include "LTexture.h"
 #include "SDL.h"
 #include "SDL_image.h"
-#include "Game_main.h"
+#include "GameMain.h"
 #include "graphics.h"
 
 LTexture::LTexture()

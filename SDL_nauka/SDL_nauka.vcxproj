@@ -154,24 +154,24 @@
     <Image Include="textures\T_trees_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\GameObject.h" />
     <ClInclude Include="Include\Cursor.h" />
-    <ClInclude Include="Include\Game_main.h" />
+    <ClInclude Include="Include\GameMain.h" />
     <ClInclude Include="Include\graphics.h" />
     <ClInclude Include="Include\LTexture.h" />
     <ClInclude Include="Include\TextureDatabase.h" />
     <ClInclude Include="Include\Tile.h" />
     <ClInclude Include="Include\TileMap.h" />
-    <ClInclude Include="Include\TileGrid.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Cursor.cpp" />
-    <ClCompile Include="src\Game_main.cpp" />
+    <ClCompile Include="src\GameMain.cpp" />
     <ClCompile Include="src\graphics.cpp" />
     <ClCompile Include="src\LTexture.cpp" />
     <ClCompile Include="src\TextureDatabase.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
-    <ClCompile Include="src\TileGrid.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

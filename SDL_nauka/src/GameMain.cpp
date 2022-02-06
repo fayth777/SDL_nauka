@@ -1,5 +1,5 @@
 
-#include "Game_main.h"
+#include "GameMain.h"
 #include "SDL.h"
 #include "graphics.h"
 #include "stdio.h"
@@ -46,7 +46,10 @@ int main(int argc, char* args[])
 			// Init Graphics
 			TextureDatabase::LoadTextures();
 
-			
+			TileMap::GetTileMap().FillAllTilesGrids();
+			TileMap::GetTileMap().SetTileIndexAndPosition();
+			TileMap::GetTileMap().SetAllTileType();
+
 			//Cursor Cursor;
 
 			//While application is running
@@ -75,12 +78,10 @@ int main(int argc, char* args[])
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-				TileMap::GetTileMap().FillAllTilesGrids();
-				TileMap::GetTileMap().SetTileIndexAndPosition();
-				TileMap::GetTileMap().SetAllTileType();
 
-				// TileMap::GetTileMap().SetTileTexture();
-				// TileMap::GetTileMap().RenderTiles();
+
+				TileMap::GetTileMap().SetTileTexture();
+				TileMap::GetTileMap().RenderTiles();
 				//Cursor.render();
 				SDL_RenderPresent(gRenderer);
 				

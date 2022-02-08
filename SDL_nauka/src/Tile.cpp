@@ -11,8 +11,8 @@ Tile::Tile()
 	IndexY =0;
 	TileType = TileType::TILETYPE_NONE;
 	TileState = TileState::IDLE;
-	Size.x = 32;
-	Size.y = 32;
+	GetTileTexture();
+	Size = GetSizeFromTexture();
 }
 
 void Tile::SetPosition(int posx, int posy)
@@ -92,10 +92,13 @@ void Tile::GetTileTexture()
 	return;
 }
 
-void Tile::SetSizeFromTexture()
+SDL_Point Tile::GetSizeFromTexture()
 {
-	Size.x = (TileTextureBase != nullptr) ?	TileTextureBase->getWidth() : 0;
-	Size.y = (TileTextureBase != nullptr) ? TileTextureBase->getHeight() : 0;
+	SDL_Point Point;
+	Point.x = (TileTextureBase != nullptr) ? TileTextureBase->getWidth() : 0;
+	Point.y = (TileTextureBase != nullptr) ? TileTextureBase->getHeight() : 0;
+
+	return Point;
 }
 
 void Tile::HandleEvent(SDL_Event* EventHandler)

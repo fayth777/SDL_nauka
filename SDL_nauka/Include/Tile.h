@@ -16,7 +16,7 @@ public:
 	void SetPosition(int posx, int posy);
 	inline void SetIndex(int x, int y) {IndexX = x; IndexY = y;}
 	inline void SetTileType(enum class TileType type) {TileType = type;};
-	void SetSizeFromTexture();
+	SDL_Point GetSizeFromTexture();
 
 	void HandleEvent(SDL_Event* EventHandler);
 	

@@ -48,7 +48,7 @@ public:
 
 private:
 	
-	const int kTile_size = 32;
+	const int kTile_size = 64;
 	Tile starting_tile;
 	inline static int column_total_amount = 100;
 	inline static int row_total_amount = 100;

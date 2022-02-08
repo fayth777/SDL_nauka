@@ -36,6 +36,11 @@ public:
 	//Set alpha modulation
 	void setAlpha(Uint8 alpha);
 
+	//Set Color Key Values
+	void setColorKeyValues(Uint8 red, Uint8 green, Uint8 blue);
+	// Enable Color keying
+	void setShouldColorKey(bool);
+
 private:
 	//The actual hardware texture
 	SDL_Texture* mTexture;
@@ -43,6 +48,9 @@ private:
 	//Image dimensions
 	int mWidth;
 	int mHeight;
+
+	SDL_Color ColorKey;
+	bool shouldColorKey = false;
 
 	std::string path;
 };

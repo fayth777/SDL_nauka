@@ -36,7 +36,8 @@ private:
 	
 	TileType TileType;
 	TileState TileState;
-	LTexture* TileTexture = nullptr;
+	LTexture* TileTextureBase = nullptr;
+	LTexture* TileTextureOverlap = nullptr;
 	SDL_Point Position;
 	SDL_Point Size;
 	int IndexX;

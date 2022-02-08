@@ -39,7 +39,10 @@ bool LTexture::LoadTextureFromFile()
 	}
 	else
 	{
-		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 0, 0));
+		if (shouldColorKey)
+		{
+			SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, ColorKey.r, ColorKey.g, ColorKey.b));
+		}
 
 		//Create texture from surface pixels
 		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
@@ -107,6 +110,17 @@ void LTexture::setAlpha(Uint8 alpha)
 {
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod(mTexture, alpha);
+}
+void LTexture::setColorKeyValues(Uint8 red, Uint8 green, Uint8 blue)
+{
+	ColorKey.r = red;
+	ColorKey.g = green;
+	ColorKey.b = blue;
+
+}
+void LTexture::setShouldColorKey(bool value)
+{
+	shouldColorKey = value;
 }
 int LTexture::getWidth()
 {

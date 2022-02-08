@@ -22,17 +22,33 @@ void Tile::SetPosition(int posx, int posy)
 }
 
 void Tile::RenderTile()
-{ TileTexture->Render(Position.x, Position.y); }
+{ TileTextureBase->Render(Position.x, Position.y); 
+switch (TileState)
+{
+case TileState::IDLE:
+	break;
+case TileState::OVERLAP:
+	TileTextureOverlap->Render(Position.x, Position.y);
+	break;
+case TileState::PRESSED:
+	break;
+case TileState::RELEASED:
+	break;
+default:
+	break;
+}
+}
+
 
 void Tile::OnPressed()
 {
-	TileTexture->setAlpha(120);
+
 
 }
 
 void Tile::OnRelease()
 {
-	TileTexture->setAlpha(255);
+
 
 }
 
@@ -59,25 +75,27 @@ void Tile::GetTileTexture()
 	switch (TileType)
 	{
 	case TileType::TILETYPE_NONE:
-		TileTexture =  TextureDatabase::GetTileTexture(TileType::TILETYPE_NONE);
+		TileTextureBase =  TextureDatabase::GetTileTexture(TileType::TILETYPE_NONE);
 		break;
 	case TileType::TILETYPE_GRASS:
-		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GRASS);
+		TileTextureBase = TextureDatabase::GetTileTexture(TileType::TILETYPE_GRASS);
 		break;
 	case TileType::TILETYPE_GROUND:
-		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_GROUND);
+		TileTextureBase = TextureDatabase::GetTileTexture(TileType::TILETYPE_GROUND);
 		break;
 	case TileType::TILETYPE_FOREST:
-		TileTexture = TextureDatabase::GetTileTexture(TileType::TILETYPE_FOREST);
+		TileTextureBase = TextureDatabase::GetTileTexture(TileType::TILETYPE_FOREST);
 		break;
 	}
+	TileTextureOverlap = TextureDatabase::GetTileOverlapTexture();
+
 	return;
 }
 
 void Tile::SetSizeFromTexture()
 {
-	Size.x = (TileTexture != nullptr) ?	TileTexture->getWidth() : 0;
-	Size.y = (TileTexture != nullptr) ? TileTexture->getHeight() : 0;
+	Size.x = (TileTextureBase != nullptr) ?	TileTextureBase->getWidth() : 0;
+	Size.y = (TileTextureBase != nullptr) ? TileTextureBase->getHeight() : 0;
 }
 
 void Tile::HandleEvent(SDL_Event* EventHandler)

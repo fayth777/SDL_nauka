@@ -1,8 +1,11 @@
 #include "TextureDatabase.h"
 
 
+
+
 std::map<TileType, LTexture*> TextureDatabase::tile_textures;
 LTexture* TextureDatabase::CursorTexture;
+LTexture* TextureDatabase::TileOverlapTexture;
 
 void TextureDatabase::LoadTextures()
 {
@@ -21,6 +24,13 @@ void TextureDatabase::LoadTextures()
 
 	TextureDatabase::CursorTexture = new LTexture("textures/mouse_pointer.png");
 	TextureDatabase::CursorTexture->LoadTextureFromFile();
+
+	TextureDatabase::TileOverlapTexture = new LTexture("textures/T_TileOverlap.png");
+	TextureDatabase::TileOverlapTexture->setColorKeyValues(230, 218, 191);
+	TextureDatabase::TileOverlapTexture->setShouldColorKey(true);
+	TextureDatabase::TileOverlapTexture->LoadTextureFromFile();
+
+
 }
 
 LTexture* TextureDatabase::GetTileTexture(TileType type)
@@ -35,4 +45,9 @@ LTexture* TextureDatabase::GetCursorTexture()
 		printf("No Cursor texture!\n");
 	}
 	return TextureDatabase::CursorTexture;
+}
+
+LTexture* TextureDatabase::GetTileOverlapTexture()
+{
+	return TextureDatabase::TileOverlapTexture;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "Tile.h"
 #include "TextureDatabase.h"
 

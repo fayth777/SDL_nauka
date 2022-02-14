@@ -66,3 +66,18 @@ bool Init()
 
 	return success;
 }
+
+void GraphicsProfiler::PrintFPS()
+{
+	int now = SDL_GetTicks();
+	if (now > fpsTimer + 1000) 
+	{
+		printf("%d FPS ", fps); 
+		fpsTimer = now;
+		fps = 0;
+	}
+	
+	 fps++;
+
+}
+

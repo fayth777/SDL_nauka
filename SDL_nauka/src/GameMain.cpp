@@ -1,4 +1,4 @@
-
+#pragma once
 #include "GameMain.h"
 #include "SDL.h"
 #include "graphics.h"
@@ -7,7 +7,7 @@
 #include "LTexture.h"
 #include "TileMap.h"
 #include "TextureDatabase.h"
-#include "Cursor.h"
+//#include "Cursor.h"
 
 
 void close()
@@ -44,6 +44,7 @@ int main(int argc, char* args[])
 			SDL_Event EventHandler;
 
 			// Init Graphics
+			GraphicsProfiler GraphicsProfiler;
 			TextureDatabase::LoadTextures();
 
 			TileMap::GetTileMap().FillAllTilesGrids();
@@ -51,6 +52,7 @@ int main(int argc, char* args[])
 			TileMap::GetTileMap().SetAllTileType();
 
 			//Cursor Cursor;
+			bool showprint = true;
 
 			//While application is running
 			while (!quit)
@@ -75,6 +77,8 @@ int main(int argc, char* args[])
 				//Move the cursor
 				//Cursor.move();
 				//Clear screen
+				GraphicsProfiler.PrintFPS();
+				
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 

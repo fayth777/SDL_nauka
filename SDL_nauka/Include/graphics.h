@@ -12,9 +12,17 @@ extern SDL_Renderer* gRenderer;
 const int kScreenWidth = 1280;
 const int kScreenHeight = 720;
 
+class GraphicsProfiler {
 
+public:
+	void PrintFPS();
 
+private:
+	int fps = 0;
+	int fpsTimer = 0;
+	
 
+};
 
 
 	

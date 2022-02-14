@@ -1,3 +1,4 @@
+#pragma once
 #include "TileMap.h"
 
 
@@ -11,6 +12,8 @@ void TileMap::SetTileIndexAndPosition()
 		{
 			tiles_all[x][y].SetIndex(x, y);
 			tiles_all[x][y].SetPosition(x*kTile_size, y*kTile_size);
+			// tiles_all[x][y].PrintState();
+
 
 		}
 	}

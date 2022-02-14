@@ -51,8 +51,7 @@ int main(int argc, char* args[])
 			TileMap::GetTileMap().SetTileIndexAndPosition();
 			TileMap::GetTileMap().SetAllTileType();
 
-			//Cursor Cursor;
-			bool showprint = true;
+			
 
 			//While application is running
 			while (!quit)
@@ -70,27 +69,24 @@ int main(int argc, char* args[])
 					{
 						TileMap::GetTileMap().CheckForTileEvents(&EventHandler);
 					}
-					//Cursor.handleEvent(EventHandler);
+					
 				}
-				
-		
-				//Move the cursor
-				//Cursor.move();
+
 				//Clear screen
 				GraphicsProfiler.PrintFPS();
 				
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
-
-
-				TileMap::GetTileMap().SetTileTexture();
-				TileMap::GetTileMap().RenderTiles();
-				//Cursor.render();
+				TileMap::GetTileMap().ForEachTile(&Tile::GetTileTexture);
+				TileMap::GetTileMap().ForEachTile(&Tile::RenderTile);
+				
+				
 				SDL_RenderPresent(gRenderer);
 				
 			}
 		
+
 	}
 
 	//Free resources and close SDL

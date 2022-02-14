@@ -14,8 +14,6 @@ public:
 	static LTexture* GetTileOverlapTexture();
 
 
-
-
 private:
 	static std::map<TileType, LTexture*> tile_textures;
 	static LTexture* CursorTexture;

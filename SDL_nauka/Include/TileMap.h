@@ -32,19 +32,21 @@ public:
 	void FillAllTilesGrids();
 	TileGrid FillSingleGrid(int gridx, int gridy);
 	void SetAllTileType();
-	void SetTileTexture();
+	
 	void SetGridType(TileGrid &grid,int density, enum class TileType type1, enum class TileType type2);
 
 	inline int GetGridsVectorSideSize() { return grids_vector_side_size; };
 	inline int GetGridRowSize() { return grid_row_size; };
 	inline int GetGridColumnSize() { return grid_column_size; };
 
-	void RenderTiles();
+	
 	Tile GetStartingTile();
 	inline static int Get_Colums_amount() { return column_total_amount; };
 	inline static int Get_Row_amount() { return row_total_amount; };
 
 	void CheckForTileEvents(SDL_Event* EventHandler);
+
+	void ForEachTile(void (Tile::* function)());
 
 private:
 	

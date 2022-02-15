@@ -13,9 +13,9 @@ class Tile: public GameObject
 public:
 
 	Tile();
-	void SetPosition(int posx, int posy);
-	inline void SetIndex(int x, int y) {IndexX = x; IndexY = y;}
-	inline void SetTileType(enum class TileType type) {TileType = type;};
+	inline void SetPosition(const int& posx,const int& posy) {Position.x = posx;Position.y = posy;};
+	inline void SetIndex(const int &x, const int& y) {IndexX = x; IndexY = y;}
+	inline void SetTileType(enum class TileType& type) {TileType = type;};
 	SDL_Point GetSizeFromTexture();
 
 	void HandleEvent(SDL_Event* EventHandler);

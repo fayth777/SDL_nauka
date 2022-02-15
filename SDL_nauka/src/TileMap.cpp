@@ -6,12 +6,12 @@
 
 void TileMap::SetTileIndexAndPosition()
 {
-	for (size_t y = 0; y < row_total_amount; y++)
+	for (size_t y = 0; y < TileAllAmountOnOneSide; y++)
 	{
-		for (size_t x = 0; x < column_total_amount; x++)
+		for (size_t x = 0; x < TileAllAmountOnOneSide; x++)
 		{
-			tiles_all[x][y].SetIndex(x, y);
-			tiles_all[x][y].SetPosition(x*kTile_size, y*kTile_size);
+			TileAll[x][y].SetIndex(x, y);
+			TileAll[x][y].SetPosition(x*kTile_size, y*kTile_size);
 			// tiles_all[x][y].PrintState();
 
 
@@ -21,24 +21,24 @@ void TileMap::SetTileIndexAndPosition()
 
 void TileMap::FillAllTilesGrids()
 {
-	for (size_t gridx = 0; gridx < grids_vector_side_size; gridx++)
+	for (size_t gridx = 0; gridx < GridOfSmallGridsSideSize; gridx++)
 	{
-		for (size_t gridy = 0; gridy < grids_vector_side_size; gridy++)
+		for (size_t gridy = 0; gridy < GridOfSmallGridsSideSize; gridy++)
 		{
-			tiles_grids[gridx][gridy] = FillSingleGrid(gridx,gridy);
+			TileGridOfSmallGrids[gridx][gridy] = FillSingleGrid(gridx,gridy);
 		}
 	}
 }
 
 TileGrid TileMap::FillSingleGrid(int gridx, int gridy)
 {
-	TileGrid tiles_grid(TileMap::GetTileMap().grid_row_size, TileMap::GetTileMap().grid_column_size);
+	TileGrid tiles_grid(TileMap::GetTileMap().SmallGridSideSize, TileMap::GetTileMap().SmallGridSideSize);
 	
-	for (size_t x = 0; x < grid_row_size; x++)
+	for (size_t x = 0; x < SmallGridSideSize; x++)
 	{
-		for (size_t y = 0; y < grid_column_size; y++)
+		for (size_t y = 0; y < SmallGridSideSize; y++)
 		{
-			tiles_grid.tiles_single_grid[x][y] = &tiles_all[x + grid_column_size * gridx][y + grid_row_size * gridy];
+			tiles_grid.TileSmallGrid[x][y] = &TileAll[x + SmallGridSideSize * gridx][y + SmallGridSideSize * gridy];
 			
 		}
 	}
@@ -50,31 +50,41 @@ TileGrid TileMap::FillSingleGrid(int gridx, int gridy)
 void TileMap::SetAllTileType()
 {
 	{
-		for (size_t gridx = 0; gridx < grids_vector_side_size; gridx++)
+		for (size_t gridx = 0; gridx < GridOfSmallGridsSideSize; gridx++)
 		{
-			for (size_t gridy = 0; gridy < grids_vector_side_size; gridy++)
+			for (size_t gridy = 0; gridy < GridOfSmallGridsSideSize; gridy++)
 			{
 				if (gridx < 2)
 				{
-					SetGridType(tiles_grids[gridx][gridy],67, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],67, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
 				}
 				if (gridx == 2 )
 				{
-					SetGridType(tiles_grids[gridx][gridy],78, TileType::TILETYPE_GROUND, TileType::TILETYPE_FOREST);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],78, TileType::TILETYPE_GROUND, TileType::TILETYPE_FOREST);
 				}
 				if (gridx > 2 )
 				{
-					SetGridType(tiles_grids[gridx][gridy],35, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],35, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
 				}
 			}
 		}
 	}
 }
 
-void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1, enum class TileType type2)
+void TileMap::SetGridType(TileGrid& grid, const int& density, enum class TileType type1, enum class TileType type2)
 {
-	int type1_tile_amount = floor(grid.tiles_amount * (density / 100.0));
-	int type2_tile_amount = floor(grid.tiles_amount - type1_tile_amount);
+	/*
+	for (size_t y = 0; y < TileAllAmountOnOneSide; y++)
+	{
+		for (size_t x = 0; x < TileAllAmountOnOneSide; x++)
+		{
+			TileAll[x][y].SetTileType(type2);
+		}
+	}
+	*/
+	
+	int type1_tile_amount = floor(grid.TileAmount * (density / 100.0));
+	int type2_tile_amount = floor(grid.TileAmount - type1_tile_amount);
 	int x = 0; // current position; x
 	int y = 0; // current position; y
 	int d = 0; // current direction; 0=RIGHT, 1=DOWN, 2=LEFT, 3=UP
@@ -82,23 +92,23 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 	int s = 1; // chain size
 
 	// starting point
-	x = ((int)floor(grids_vector_side_size / 2.0-1));
-	y = ((int)floor(grids_vector_side_size / 2.0-1));
+	x = ((int)floor((GridOfSmallGridsSideSize / 2.0)-1));
+	y = ((int)floor((GridOfSmallGridsSideSize / 2.0)-1));
 
-	for (int k = 1; k <= (grids_vector_side_size)-1; k++)
+	for (int k = 1; k <= (GridOfSmallGridsSideSize)-1; k++)
 	{
-		for (int j = 0; j <= (k < (grids_vector_side_size-1 ) ? 2 : 3); j++)
+		for (int j = 0; j <= (k < (GridOfSmallGridsSideSize-1 ) ? 2 : 3); j++)
 		{
 			for (int i = 0; i < s; i++)
 			{
 				if (type1_tile_amount>0)
 				{
-					grid.tiles_single_grid[x][y]->SetTileType(type1);
+					grid.TileSmallGrid[x][y]->SetTileType(type1);
 					type1_tile_amount--;
 				}
 				else
 				{
-					grid.tiles_single_grid[x][y]->SetTileType(type2);
+					grid.TileSmallGrid[x][y]->SetTileType(type2);
 
 				}
 
@@ -122,27 +132,27 @@ void TileMap::SetGridType(TileGrid& grid, int density, enum class TileType type1
 
 Tile TileMap::GetStartingTile()
 {
-		return tiles_all[row_total_amount / 2][column_total_amount / 2];
+		return TileAll[floor(TileAllAmountOnOneSide / 2)][floor(TileAllAmountOnOneSide / 2)];
 }
 
 void TileMap::CheckForTileEvents(SDL_Event* EventHandler)
 {
-	for (size_t y = 0; y < row_total_amount; y++)
+	for (size_t y = 0; y < TileAllAmountOnOneSide; y++)
 	{
-		for (size_t x = 0; x < column_total_amount; x++)
+		for (size_t x = 0; x < TileAllAmountOnOneSide; x++)
 		{
-			tiles_all[x][y].HandleEvent(EventHandler);
+			TileAll[x][y].HandleEvent(EventHandler);
 		}
 	}
 
 }
 
 void TileMap::ForEachTile(void (Tile::*function)()) {
-	for (size_t y = 0; y < row_total_amount; y++)
+	for (size_t y = 0; y < TileAllAmountOnOneSide; y++)
 	{
-		for (size_t x = 0; x < column_total_amount; x++)
+		for (size_t x = 0; x < TileAllAmountOnOneSide; x++)
 		{
-			(tiles_all[x][y].*function)();
+			(TileAll[x][y].*function)();
 		}
 	}
 

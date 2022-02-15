@@ -16,11 +16,7 @@ Tile::Tile()
 	Size = GetSizeFromTexture();
 }
 
-void Tile::SetPosition(int posx, int posy)
-{
-	Position.x = posx;
-	Position.y = posy;
-}
+
 
 void Tile::RenderTile()
 { TileTextureBase->Render(Position.x, Position.y); 

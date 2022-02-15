@@ -8,18 +8,18 @@
 struct TileGrid
 {
 public: 
-	TileGrid() : tiles_single_grid(0, std::vector < Tile*>(0)), tiles_amount(0){};
-	TileGrid(int xsize, int ysize) : tiles_single_grid(xsize, std::vector < Tile*>(ysize)),tiles_amount(xsize*ysize) {}
-	std::vector<std::vector<Tile*>> tiles_single_grid;
-	int tiles_amount;
+	TileGrid() : TileSmallGrid(0, std::vector < Tile*>(0)), TileAmount(0){};
+	TileGrid(int xsize, int ysize) : TileSmallGrid(xsize, std::vector < Tile*>(ysize)), TileAmount(xsize*ysize) {}
+	std::vector<std::vector<Tile*>> TileSmallGrid;
+	int TileAmount;
 };
 
 class TileMap
 {
 	
 public:
-	TileMap() : tiles_all(TileMap::Get_Row_amount(), std::vector<Tile>(TileMap::Get_Colums_amount())),
-		tiles_grids(TileMap::grids_vector_side_size, std::vector<TileGrid>(TileMap::grids_vector_side_size))
+	TileMap() : TileAll(TileMap::GetTileAllAmountOnOneSide(), std::vector<Tile>(TileMap::GetTileAllAmountOnOneSide())),
+		TileGridOfSmallGrids(TileMap::GridOfSmallGridsSideSize, std::vector<TileGrid>(TileMap::GridOfSmallGridsSideSize))
 		 {}
 	
 	TileMap(const TileMap&) = delete;
@@ -33,16 +33,16 @@ public:
 	TileGrid FillSingleGrid(int gridx, int gridy);
 	void SetAllTileType();
 	
-	void SetGridType(TileGrid &grid,int density, enum class TileType type1, enum class TileType type2);
+	void SetGridType(TileGrid &grid,const int& density, enum class TileType type1, enum class TileType type2);
 
-	inline int GetGridsVectorSideSize() { return grids_vector_side_size; };
-	inline int GetGridRowSize() { return grid_row_size; };
-	inline int GetGridColumnSize() { return grid_column_size; };
+	inline int GetGridsVectorSideSize() { return GridOfSmallGridsSideSize; };
+	inline int GetGridRowSize() { return SmallGridSideSize; };
+
 
 	
 	Tile GetStartingTile();
-	inline static int Get_Colums_amount() { return column_total_amount; };
-	inline static int Get_Row_amount() { return row_total_amount; };
+	inline static int GetTileAllAmountOnOneSide() { return TileAllAmountOnOneSide; };
+	
 
 	void CheckForTileEvents(SDL_Event* EventHandler);
 
@@ -51,19 +51,19 @@ public:
 private:
 	
 	const int kTile_size = 64;
-	Tile starting_tile;
-	inline static int column_total_amount = 100;
-	inline static int row_total_amount = 100;
-	int grids_vector_side_size = 10;
-	int grid_row_size = row_total_amount / grids_vector_side_size;
-	int grid_column_size = column_total_amount / grids_vector_side_size;
+	Tile TileStarting;
+	const static int GridOfSmallGridsSideSize = 10;
+	const static int  SmallGridSideSize = 10;
+	inline static int TileAllAmountOnOneSide = GridOfSmallGridsSideSize * SmallGridSideSize;
+	
+	
+	
 
 	//2d vector of all tiles
-	std::vector<std::vector<Tile>> tiles_all;
+	std::vector<std::vector<Tile>> TileAll;
 	//2d vector comprised of grids of references to tiles which are parts of the whole grid
-	std::vector<std::vector<TileGrid>> tiles_grids;
+	std::vector<std::vector<TileGrid>> TileGridOfSmallGrids;
 
-	TileGrid tile_grid;
 	
 
 };

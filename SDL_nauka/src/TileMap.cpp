@@ -55,24 +55,28 @@ void TileMap::SetAllTileType()
 		{
 			for (size_t gridy = 0; gridy < GridOfSmallGridsSideSize; gridy++)
 			{
-				if (gridx < 2)
+				if (gridx < 3)
 				{
-					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.6, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.3, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
 				}
-				if (gridx == 2 )
+				if (gridx == 3 )
 				{
 					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.7, TileType::TILETYPE_GROUND, TileType::TILETYPE_FOREST);
 				}
-				if (gridx > 2 )
+				if (gridx > 3 )
 				{
-					SetGridType(TileGridOfSmallGrids[gridx][gridy], 0.5, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.5, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
 				}
 			}
 		}
 	}
 }
 
-void TileMap::SetGridType(TileGrid& grid, const float& density, enum class TileType type1, enum class TileType type2)
+
+/*
+*@param[out] Type1Density: Value between 0 and 1. The higher the value the higher chances for Tile of type 1 to appear.
+*/
+void TileMap::SetGridType(TileGrid& grid, const float& Type1Density, enum class TileType type1, enum class TileType type2)
 {
 	float TileTypeA = static_cast<float>(SmallGridSideSize) / 2.f;
 	float TileTypeB = 0.f;
@@ -83,7 +87,7 @@ void TileMap::SetGridType(TileGrid& grid, const float& density, enum class TileT
 		{
 			float chance = GetRandom(0, 1);
 			printf(" % f", chance);
-			if (chance>=density)
+			if (chance<=Type1Density)
 			{
 				grid.TileSmallGrid[x][y]->SetTileType(type1);
 

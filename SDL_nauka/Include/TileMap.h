@@ -33,6 +33,7 @@ public:
 	TileGrid FillSingleGrid(int gridx, int gridy);
 	void SetAllTileType();
 	
+
 	void SetGridType(TileGrid &grid,const float& density, enum class TileType type1, enum class TileType type2);
 
 	inline int GetGridsVectorSideSize() { return GridOfSmallGridsSideSize; };
@@ -52,8 +53,8 @@ private:
 	
 	const int kTile_size = 64;
 	Tile TileStarting;
-	const static int GridOfSmallGridsSideSize = 5;
-	const static int  SmallGridSideSize = 10;
+	const static int GridOfSmallGridsSideSize = 10;
+	const static int  SmallGridSideSize = 5;
 	inline static int TileAllAmountOnOneSide = GridOfSmallGridsSideSize * SmallGridSideSize;
 	
 	

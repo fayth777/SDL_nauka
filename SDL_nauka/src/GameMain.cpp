@@ -51,17 +51,6 @@ int main(int argc, char* args[])
 			TileMap::GetTileMap().SetTileIndexAndPosition();
 			TileMap::GetTileMap().SetAllTileType();
 
-			
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-			printf(" % f", GetRandom(2, 20));
-
-
-
 
 			//While application is running
 			while (!quit)

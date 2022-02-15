@@ -9,8 +9,8 @@ extern SDL_Window* gWindow;
 //The window renderer
 extern SDL_Renderer* gRenderer;
 
-const int kScreenWidth = 1280;
-const int kScreenHeight = 720;
+const int kScreenWidth = 1920;
+const int kScreenHeight = 1080;
 
 class GraphicsProfiler {
 

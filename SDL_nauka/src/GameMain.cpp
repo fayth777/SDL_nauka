@@ -7,6 +7,7 @@
 #include "LTexture.h"
 #include "TileMap.h"
 #include "TextureDatabase.h"
+#include "GeneralFunctions.h"
 //#include "Cursor.h"
 
 
@@ -36,7 +37,6 @@ int main(int argc, char* args[])
 	else
 	{
 		
-		
 			//Main loop flag
 			bool quit = false;
 
@@ -52,6 +52,16 @@ int main(int argc, char* args[])
 			TileMap::GetTileMap().SetAllTileType();
 
 			
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+			printf(" % f", GetRandom(2, 20));
+
+
+
 
 			//While application is running
 			while (!quit)
@@ -72,7 +82,7 @@ int main(int argc, char* args[])
 					
 				}
 
-				//Clear screen
+				
 				GraphicsProfiler.PrintFPS();
 				
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);

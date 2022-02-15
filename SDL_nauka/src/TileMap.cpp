@@ -1,5 +1,6 @@
 #pragma once
 #include "TileMap.h"
+#include "GeneralFunctions.h"
 
 
 
@@ -56,74 +57,43 @@ void TileMap::SetAllTileType()
 			{
 				if (gridx < 2)
 				{
-					SetGridType(TileGridOfSmallGrids[gridx][gridy],67, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.6, TileType::TILETYPE_GRASS, TileType::TILETYPE_GROUND);
 				}
 				if (gridx == 2 )
 				{
-					SetGridType(TileGridOfSmallGrids[gridx][gridy],78, TileType::TILETYPE_GROUND, TileType::TILETYPE_FOREST);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy],0.7, TileType::TILETYPE_GROUND, TileType::TILETYPE_FOREST);
 				}
 				if (gridx > 2 )
 				{
-					SetGridType(TileGridOfSmallGrids[gridx][gridy],35, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
+					SetGridType(TileGridOfSmallGrids[gridx][gridy], 0.5, TileType::TILETYPE_FOREST, TileType::TILETYPE_GROUND);
 				}
 			}
 		}
 	}
 }
 
-void TileMap::SetGridType(TileGrid& grid, const int& density, enum class TileType type1, enum class TileType type2)
+void TileMap::SetGridType(TileGrid& grid, const float& density, enum class TileType type1, enum class TileType type2)
 {
-	/*
-	for (size_t y = 0; y < TileAllAmountOnOneSide; y++)
-	{
-		for (size_t x = 0; x < TileAllAmountOnOneSide; x++)
-		{
-			TileAll[x][y].SetTileType(type2);
-		}
-	}
-	*/
-	
-	int type1_tile_amount = floor(grid.TileAmount * (density / 100.0));
-	int type2_tile_amount = floor(grid.TileAmount - type1_tile_amount);
-	int x = 0; // current position; x
-	int y = 0; // current position; y
-	int d = 0; // current direction; 0=RIGHT, 1=DOWN, 2=LEFT, 3=UP
-	int c = 0; // counter
-	int s = 1; // chain size
+	float TileTypeA = static_cast<float>(SmallGridSideSize) / 2.f;
+	float TileTypeB = 0.f;
 
-	// starting point
-	x = ((int)floor((GridOfSmallGridsSideSize / 2.0)-1));
-	y = ((int)floor((GridOfSmallGridsSideSize / 2.0)-1));
-
-	for (int k = 1; k <= (GridOfSmallGridsSideSize)-1; k++)
+	for (size_t y = 0; y < SmallGridSideSize; y++)
 	{
-		for (int j = 0; j <= (k < (GridOfSmallGridsSideSize-1 ) ? 2 : 3); j++)
+		for (size_t x = 0; x < SmallGridSideSize; x++)
 		{
-			for (int i = 0; i < s; i++)
+			float chance = GetRandom(0, 1);
+			printf(" % f", chance);
+			if (chance>=density)
 			{
-				if (type1_tile_amount>0)
-				{
-					grid.TileSmallGrid[x][y]->SetTileType(type1);
-					type1_tile_amount--;
-				}
-				else
-				{
-					grid.TileSmallGrid[x][y]->SetTileType(type2);
+				grid.TileSmallGrid[x][y]->SetTileType(type1);
 
-				}
-
-				c++;
-				switch (d)
-				{
-				case 0: y = y + 1; break;
-				case 1: x = x + 1; break;
-				case 2: y = y - 1; break;
-				case 3: x = x - 1; break;
-				}
 			}
-			d = (d + 1) % 4;
+			else
+			{
+				grid.TileSmallGrid[x][y]->SetTileType(type2);
+
+			}
 		}
-		s = s + 1;
 	}
 	
 }

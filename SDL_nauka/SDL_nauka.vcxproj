@@ -154,6 +154,7 @@
     <Image Include="textures\T_trees_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\GeneralFunctions.h" />
     <ClInclude Include="Include\GameObject.h" />
     <ClInclude Include="Include\Cursor.h" />
     <ClInclude Include="Include\GameMain.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Include\TileMap.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GeneralFunctions.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Cursor.cpp" />
     <ClCompile Include="src\GameMain.cpp" />

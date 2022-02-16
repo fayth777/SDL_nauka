@@ -36,15 +36,15 @@ public:
 
 	void SetGridType(TileGrid &grid,const float& density, enum class TileType type1, enum class TileType type2);
 
-
 	inline int GetGridsVectorSideSize() { return GridOfSmallGridsSideSize; };
 	inline int GetGridRowSize() { return SmallGridSideSize; };
-	inline static int GetTileAllAmountOnOneSide() { return TileAllAmountOnOneSide; };
-	inline int GetTileSize() { return kTile_size; };
+
 
 	
 	Tile GetStartingTile();
+	inline static int GetTileAllAmountOnOneSide() { return TileAllAmountOnOneSide; };
 	
+
 	void CheckForTileEvents(SDL_Event* EventHandler);
 
 	void ForEachTile(void (Tile::* function)());

@@ -51,7 +51,7 @@ int main(int argc, char* args[])
 			TileMap::GetTileMap().SetTileIndexAndPosition();
 			TileMap::GetTileMap().SetAllTileType();
 
-
+			printf("Level size: %i", kLevelSideSize);
 			//While application is running
 			while (!quit)
 			{

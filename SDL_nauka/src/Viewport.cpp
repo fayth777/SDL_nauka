@@ -1,8 +1,8 @@
 #pragma once
-#include "Cursor.h"
+#include "Viewport.h"
 #include "TextureDatabase.h"
 
-Cursor::Cursor()
+Viewport::Viewport()
 {
     //Initialize the offsets
     mPosX = 0;
@@ -11,9 +11,11 @@ Cursor::Cursor()
     //Initialize the velocity
     mVelX = 0;
     mVelY = 0;
+
+    ViewportRectangle = { 0, 0, kScreenWidth, kScreenHeight };
 }
 
-void Cursor::handleEvent(SDL_Event& EventHandler)
+void Viewport::handleEvent(SDL_Event& EventHandler)
 {
     //If a key was pressed
     if (EventHandler.type == SDL_KEYDOWN && EventHandler.key.repeat == 0)
@@ -21,10 +23,10 @@ void Cursor::handleEvent(SDL_Event& EventHandler)
         //Adjust the velocity
         switch (EventHandler.key.keysym.sym)
         {
-        case SDLK_UP: mVelY -= DOT_VEL; break;
-        case SDLK_DOWN: mVelY += DOT_VEL; break;
-        case SDLK_LEFT: mVelX -= DOT_VEL; break;
-        case SDLK_RIGHT: mVelX += DOT_VEL; break;
+        case SDLK_UP: mVelY -= CameraVelocity; break;
+        case SDLK_DOWN: mVelY += CameraVelocity; break;
+        case SDLK_LEFT: mVelX -= CameraVelocity; break;
+        case SDLK_RIGHT: mVelX += CameraVelocity; break;
         }
     }
         //If a key was released
@@ -33,22 +35,22 @@ void Cursor::handleEvent(SDL_Event& EventHandler)
         //Adjust the velocity
         switch (EventHandler.key.keysym.sym)
         {
-        case SDLK_UP: mVelY += DOT_VEL; break;
-        case SDLK_DOWN: mVelY -= DOT_VEL; break;
-        case SDLK_LEFT: mVelX += DOT_VEL; break;
-        case SDLK_RIGHT: mVelX -= DOT_VEL; break;
+        case SDLK_UP: mVelY += CameraVelocity; break;
+        case SDLK_DOWN: mVelY -= CameraVelocity; break;
+        case SDLK_LEFT: mVelX += CameraVelocity; break;
+        case SDLK_RIGHT: mVelX -= CameraVelocity; break;
         }
     }
 }
 
-void Cursor::move()
+void Viewport::move()
 {
     {
         //Move the dot left or right
         mPosX += mVelX;
 
         //If the dot went too far to the left or right
-        if ((mPosX < 0) || (mPosX + DOT_WIDTH > kScreenWidth))
+        if ((mPosX < 0) || (mPosX  > kScreenWidth))
         {
             //Move back
             mPosX -= mVelX;
@@ -57,7 +59,7 @@ void Cursor::move()
         mPosY += mVelY;
 
         //If the dot went too far up or down
-        if ((mPosY < 0) || (mPosY + DOT_HEIGHT > kScreenHeight))
+        if ((mPosY < 0) || (mPosY  > kScreenHeight))
         {
             //Move back
             mPosY -= mVelY;
@@ -65,10 +67,3 @@ void Cursor::move()
     }
 }
 
-void Cursor::render()
-{
-    {
-        //Show the cursor
-        TextureDatabase::GetCursorTexture()->Render(mPosX, mPosY);
-    }
-}

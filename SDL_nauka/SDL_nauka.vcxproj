@@ -156,7 +156,7 @@
   <ItemGroup>
     <ClInclude Include="Include\GeneralFunctions.h" />
     <ClInclude Include="Include\GameObject.h" />
-    <ClInclude Include="Include\Cursor.h" />
+    <ClInclude Include="Include\Viewport.h" />
     <ClInclude Include="Include\GameMain.h" />
     <ClInclude Include="Include\graphics.h" />
     <ClInclude Include="Include\LTexture.h" />
@@ -167,7 +167,7 @@
   <ItemGroup>
     <ClCompile Include="src\GeneralFunctions.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\Cursor.cpp" />
+    <ClCompile Include="src\Viewport.cpp" />
     <ClCompile Include="src\GameMain.cpp" />
     <ClCompile Include="src\graphics.cpp" />
     <ClCompile Include="src\LTexture.cpp" />

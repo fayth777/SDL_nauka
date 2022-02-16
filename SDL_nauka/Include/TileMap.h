@@ -38,11 +38,12 @@ public:
 
 	inline int GetGridsVectorSideSize() { return GridOfSmallGridsSideSize; };
 	inline int GetGridRowSize() { return SmallGridSideSize; };
-
+	inline int GetTileSize() { return kTile_size; };
+	inline static int GetTileAllAmountOnOneSide() { return TileAllAmountOnOneSide; };
+	inline int GetLevelSideSize() { return LevelSideSize; };
 
 	
 	Tile GetStartingTile();
-	inline static int GetTileAllAmountOnOneSide() { return TileAllAmountOnOneSide; };
 	
 
 	void CheckForTileEvents(SDL_Event* EventHandler);
@@ -56,7 +57,9 @@ private:
 	const static int GridOfSmallGridsSideSize = 10;
 	const static int  SmallGridSideSize = 5;
 	inline static int TileAllAmountOnOneSide = GridOfSmallGridsSideSize * SmallGridSideSize;
-	
+
+	int LevelSideSize = kTile_size * SmallGridSideSize * GridOfSmallGridsSideSize;
+
 	
 	
 

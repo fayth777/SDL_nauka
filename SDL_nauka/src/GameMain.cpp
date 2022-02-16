@@ -8,7 +8,9 @@
 #include "TileMap.h"
 #include "TextureDatabase.h"
 #include "GeneralFunctions.h"
-//#include "Cursor.h"
+#include "Viewport.h"
+
+
 
 
 void close()
@@ -44,6 +46,7 @@ int main(int argc, char* args[])
 			SDL_Event EventHandler;
 
 			// Init Graphics
+			Viewport Viewport;
 			GraphicsProfiler GraphicsProfiler;
 			TextureDatabase::LoadTextures();
 
@@ -80,7 +83,9 @@ int main(int argc, char* args[])
 				TileMap::GetTileMap().ForEachTile(&Tile::GetTileTexture);
 				TileMap::GetTileMap().ForEachTile(&Tile::RenderTile);
 				
+		
 				
+				SDL_RenderSetViewport(gRenderer, &Viewport.GetViewportRectangle());
 				SDL_RenderPresent(gRenderer);
 				
 			}

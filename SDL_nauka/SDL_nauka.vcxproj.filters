@@ -62,7 +62,7 @@
     <ClInclude Include="Include\LTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Cursor.h">
+    <ClInclude Include="Include\Viewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\GameObject.h">
@@ -91,7 +91,7 @@
     <ClCompile Include="src\LTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Cursor.cpp">
+    <ClCompile Include="src\Viewport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject.cpp">

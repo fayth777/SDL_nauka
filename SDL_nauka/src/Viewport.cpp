@@ -1,6 +1,8 @@
 #pragma once
 #include "Viewport.h"
 #include "TextureDatabase.h"
+#include "TileMap.h"
+
 
 Viewport::Viewport()
 {
@@ -46,24 +48,32 @@ void Viewport::handleEvent(SDL_Event& EventHandler)
 void Viewport::move()
 {
     {
-        //Move the dot left or right
+        //Move the Viewport left or right
         mPosX += mVelX;
 
-        //If the dot went too far to the left or right
-        if ((mPosX < 0) || (mPosX  > kScreenWidth))
+        //If the Viewport went too far to the left or right
+        if ((mPosX < 0) || (mPosX  > TileMap::GetTileMap().GetLevelSideSize() - kScreenWidth))
         {
             //Move back
             mPosX -= mVelX;
         }
-        //Move the dot up or down
+        //Move the Viewport up or down*/
         mPosY += mVelY;
 
-        //If the dot went too far up or down
-        if ((mPosY < 0) || (mPosY  > kScreenHeight))
+        //If the Viewport went too far up or down
+        if ((mPosY < 0) || (mPosY  > TileMap::GetTileMap().GetLevelSideSize() - kScreenHeight))
         {
             //Move back
             mPosY -= mVelY;
         }
     }
+}
+
+void Viewport::SetViewportValues()
+{
+    ViewportRectangle.x = mPosX;
+    ViewportRectangle.y = mPosY;
+    ViewportRectangle.w = kScreenWidth;
+    ViewportRectangle.h = kScreenHeight;
 }
 

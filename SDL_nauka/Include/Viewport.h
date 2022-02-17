@@ -12,27 +12,31 @@ class Viewport
 public:
 
     //Maximum axis velocity of the Camera
-    static const int CameraVelocity = 10;
+    static const int CameraVelocity = 5;
 
     //Initializes the variables
     Viewport();
 
+    static Viewport& GetViewport() {
+        static Viewport Viewport;
+        return Viewport;
+    };
     //Takes key presses and adjusts the Viewport's velocity
     void handleEvent(SDL_Event& event_handler);
 
     //Moves the Viewport
     void move();
 
-    inline SDL_Rect GetViewportRectangle() { return ViewportRectangle; };
+    SDL_Rect ViewportRectangle;
 
-
-private:
+    void SetViewportValues();
     //The X and Y offsets of the Viewport
     int mPosX, mPosY;
 
     //The velocity of the Viewport
     int mVelX, mVelY;
+private:
+   
 
-    SDL_Rect ViewportRectangle;
 };
 

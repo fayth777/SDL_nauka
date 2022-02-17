@@ -55,7 +55,7 @@ private:
 	const int kTile_size = 64;
 	Tile TileStarting;
 	const static int GridOfSmallGridsSideSize = 10;
-	const static int  SmallGridSideSize = 5;
+	const static int  SmallGridSideSize = 10;
 	inline static int TileAllAmountOnOneSide = GridOfSmallGridsSideSize * SmallGridSideSize;
 
 	int LevelSideSize = kTile_size * SmallGridSideSize * GridOfSmallGridsSideSize;

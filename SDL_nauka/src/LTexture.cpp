@@ -4,6 +4,7 @@
 #include "SDL_image.h"
 #include "GameMain.h"
 #include "graphics.h"
+#include "Viewport.h"
 
 LTexture::LTexture()
 {
@@ -82,7 +83,7 @@ void LTexture::free()
 void LTexture::Render(int x, int y, SDL_Rect* clip)
 {
 	//Set rendering space and render to screen
-	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+	SDL_Rect renderQuad = { x - Viewport::GetViewport().mPosX, y - Viewport::GetViewport().mPosY, mWidth, mHeight };
 
 	//Set clip rendering dimensions
 	if (clip != NULL)

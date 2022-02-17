@@ -46,7 +46,7 @@ int main(int argc, char* args[])
 			SDL_Event EventHandler;
 
 			// Init Graphics
-			Viewport Viewport;
+			
 			GraphicsProfiler GraphicsProfiler;
 			TextureDatabase::LoadTextures();
 
@@ -70,6 +70,7 @@ int main(int argc, char* args[])
 					else
 					{
 						TileMap::GetTileMap().CheckForTileEvents(&EventHandler);
+						Viewport::GetViewport().handleEvent(EventHandler);
 					}
 					
 				}
@@ -83,9 +84,9 @@ int main(int argc, char* args[])
 				TileMap::GetTileMap().ForEachTile(&Tile::GetTileTexture);
 				TileMap::GetTileMap().ForEachTile(&Tile::RenderTile);
 				
-		
-				
-				SDL_RenderSetViewport(gRenderer, &Viewport.GetViewportRectangle());
+				Viewport::GetViewport().move();
+				Viewport::GetViewport().SetViewportValues();
+				//SDL_RenderSetViewport(gRenderer, Viewport::GetViewport().ViewportRectangle);
 				SDL_RenderPresent(gRenderer);
 				
 			}
